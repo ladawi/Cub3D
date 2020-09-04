@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 11:24:15 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 15:33:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 18:07:42 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 int		keypress(int keycode, data_t *data)
 {
@@ -32,14 +32,15 @@ int		keypress(int keycode, data_t *data)
 
 void	freeall(data_t *data)
 {
-	
+	int i;
+
+	i = -1;
 	if (data->line2)
 	{
 		free(data->line2);
 		data->line2 = 0;
 	}
-	int i = -1;
-	while (++i <= data->Config.l)
+	while (++i < data->Config.l)
 	{
 		if (data->map[i])
 		{
@@ -47,28 +48,12 @@ void	freeall(data_t *data)
 			data->map[i] = 0;
 		}
 	}
-	// if (data->idparsing)
-	// {
-	// 	free(data->idparsing);
-	// 	data->idparsing = 0;
-	// }
 	if (data->Error)
 	{
 		free(data->Error);
 		data->Error = 0;
 	}
 	free(data->Sprites.SpritesPos);
-	
-	printf("free done\n");
-}
-
-int		exitwindow(data_t *data)
-{
-	freeall(data);
-	mlx_clear_window(data->mlx_ptr, data->mlx_win);
-	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
-	exit(1);
-	return (0);
 }
 
 int		keyrelease(int keycode, data_t *data)

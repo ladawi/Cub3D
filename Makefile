@@ -6,11 +6,11 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/09/02 15:48:30 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/04 17:44:29 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3d.out
+NAME = Cub3D.out
 
 SRC_LIST=\
 	main.c\
@@ -44,7 +44,7 @@ LIBFT = ./libft/libft.a
 LIBFT_INCLUDE = ./libft/includes/libft.h\
 	./libft/includes/get_next_line.h
 
-INCLUDE = includes/Cub3d.h
+INCLUDE = includes/Cub3D.h
 
 SRC_DIR = src
 
@@ -79,7 +79,7 @@ $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@gcc -c $< -I includes -I libft/includes -o $@
+	@gcc -g -c $< -I includes -I libft/includes -o $@
 	@echo "$(GRE)$<$(END)"
 
 clean:

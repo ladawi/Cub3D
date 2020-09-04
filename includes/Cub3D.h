@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 15:25:27 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:41:42 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@
 # define KEY_E			101
 # define KEY_J			38
 # define KEY_LEFT		65361
-# define KEY_RIGHT		65364
+# define KEY_RIGHT		65363
 # define KEY_FORWARD 	65362
-# define KEY_BACKWARD	65363
+# define KEY_BACKWARD	65364
 # define KEY_ESC		65307
 
 

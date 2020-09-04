@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:54:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 12:29:11 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 void		ft_putpixel(data_t *data, int side, int x, int y)
 {
@@ -73,6 +73,5 @@ int			gameloop(data_t *data)
 	player_move(data);
 	ft_minimap(data);
 	update_window(data);
-	// exitwindow(data);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:29 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/01 18:33:00 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 char		*get_map_heart_2(data_t *data, char *line, int i)
 {
@@ -43,8 +43,6 @@ char		*get_map_heart_2(data_t *data, char *line, int i)
 
 char		*get_map_2(data_t *data)
 {
-	int i = -1;
-	int y = -1;
 	if (!(data->Sprites.SpritesPos =
 		ft_calloc((data->Sprites.numSprites + 1), sizeof(Sprit_t))))
 		return ("a malloc derped\n");
@@ -52,16 +50,6 @@ char		*get_map_2(data_t *data)
 		return ("No spawn placed\n");
 	data->game.nMapWidth = data->Config.y;
 	data->game.nMapHeight = data->Config.l;
-	while (++i < data->Map.MaxHeight)
-	{
-		while (++y < data->Map.MaxWidth)
-		{
-			printf("%c", data->map[i][y]);
-
-		}
-		y = -1;
-		printf("\n");
-	}
 	data->Error = check_map(data);
 	data->Error = check_map_2(data);
 	return (data->Error);

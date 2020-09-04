@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:49:24 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 15:48:54 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 18:18:58 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 
 int			check_arg(char *str)
@@ -55,7 +55,7 @@ int 		main(int ac, char **av)
 		data.mlx_win = 0;
 		if (ac == 2)
 		{
-			if (!(data.mlx_win = mlx_new_window(data.mlx_ptr, data.res_width, data.res_height, "Cub3d")))
+			if (!(data.mlx_win = mlx_new_window(data.mlx_ptr, data.res_width, data.res_height, "Cub3D")))
 			{
 				ft_putendl_fd("Error :", 0);
 				ft_putendl_fd("mlx_new_window failed", 0);
@@ -82,6 +82,7 @@ int 		main(int ac, char **av)
 			freeall(&data);
 			free(data.mlx_ptr);
 			free(data.sImg.img);
+			exit(1);
 		}
 	}
 	else

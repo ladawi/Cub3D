@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 09:51:54 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 15:22:10 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 void		init_head(data_t *data, header_t *head)
 {
@@ -73,7 +73,7 @@ char		*ft_screenshot(data_t *data)
 	char	*file;
 	char	header[54];
 	char	*tofree;
-	
+
 	fdscreen = open("./screenshot/Cub3d screen.bmp", O_CREAT | O_WRONLY, 0666);
 	create_header(data, &header[0]);
 	file = (char*)fill_file(data);

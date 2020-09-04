@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 15:26:18 by ladawi            #+#    #+#             */
-/*   Updated: 2020/08/25 16:09:35 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 void		drawcursor(data_t *data)
 {

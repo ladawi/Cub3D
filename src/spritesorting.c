@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 14:30:38 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 12:41:31 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 void		spritesorting2(data_t *data, int *order, double *dist, int amount)
 {
@@ -41,7 +41,7 @@ void		spritesorting2(data_t *data, int *order, double *dist, int amount)
 
 char		*ft_spritesorting(data_t *data)
 {
-	char	*tofree;
+	double	*tofree;
 
 	if (!(data->Sdata.spriteOrder =
 		ft_calloc(data->Sprites.numSprites + 1, sizeof(int))))

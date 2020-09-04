@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:38:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/08/26 15:01:03 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 18:10:25 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 void		ft_rotate_player(data_t *data, double angle)
 {
@@ -26,52 +26,6 @@ void		ft_rotate_player(data_t *data, double angle)
 		* cos(angle) - data->game.dPlaneY * sin(angle);
 	data->game.dPlaneY = oldplanex
 		* sin(angle) + data->game.dPlaneY * cos(angle);
-}
-
-char		*get_color2(data_t *data, char *line, unsigned int tab[3])
-{
-	if (tab[0] > 255 || tab[0] < 0)
-		return ("\033[1;91mRed color in floor or Ceiling not valid\n");
-	if (tab[1] > 255 || tab[1] < 0)
-		return ("\033[1;92mGreen color in floor or Ceiling not valid\n");
-	if (tab[2] > 255 || tab[2] < 0)
-		return ("\033[1;34mBlue color in floor or Ceiling not valid\n");
-	tab[0] = tab[0] << 16;
-	tab[1] = tab[1] << 8;
-	if (ft_strnstr(data->idparsing, "F", 0) != 0)
-		data->F_color = tab[0] + tab[1] + tab[2];
-	else if (ft_strnstr(data->idparsing, "C", 0) != 0)
-		data->C_color = tab[0] + tab[1] + tab[2];
-	return (0);
-}
-
-char		*get_color(data_t *data, char *line)
-{
-	unsigned int		tab[3];
-	int					i;
-
-	i = -1;
-	line += 1;
-	while (line[++i] != 0)
-		if (ft_isdigit(line[i]) != 1 && line[i] != ',' && line[i] != ' ')
-			return ("Wrong color input");
-	while (*line == ' ')
-		line++;
-	tab[0] = atoi(line);
-	while (*line != ',' && *line != 0)
-		line++;
-	if (*line == 0)
-		return ("Wrong color input");
-	line++;
-	tab[1] = atoi(line);
-	while (*line != ',' && *line != 0)
-		line++;
-	if (*line == 0)
-		return ("Wrong color input");
-	line++;
-	tab[2] = atoi(line);
-	get_color2(data, line, tab);
-	return (0);
 }
 
 char		*check_map2(data_t *data, int p, int u, int i)

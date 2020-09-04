@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 12:42:31 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 void		spritecalc(data_t *data)
 {
@@ -86,8 +86,8 @@ void		drawsprites2(data_t *data, unsigned int color, double *zbuffer)
 char		*drawsprites(data_t *data, double *zbuffer)
 {
 	unsigned int	color;
-	int			*tofree;
-	
+	int				*tofree;
+
 	data->Var.u = -1;
 	data->Var.i = -1;
 	data->Var.h = -1;

@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/02 14:17:21 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/04 16:45:16 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ char		*get_map_heart(data_t *data, char *line)
 
 char		*get_specs_map(data_t *data, char *line)
 {
-	int	ret;
+	int		ret;
+	char	*tofree;
 
 	ret = -1;
-	char *tofree;
 	if (ft_strlen(data->line2) > 0)
 		data->Map.MaxWidth = ft_strlen(data->line2);
 	data->Map.MaxHeight = 1;
@@ -126,11 +126,8 @@ char		*get_map(data_t *data, char *line)
 			return (data->Error);
 		data->map[data->Config.l] = data->test;
 		data->Config.l++;
-		if (line)
-		{
-			free(line);
-			line = 0;
-		}
+		free(line);
+		*line = 0;
 	}
 	return (get_map_2(data));
 }
