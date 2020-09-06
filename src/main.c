@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:49:24 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 18:18:58 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 11:57:22 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int 		main(int ac, char **av)
 			ft_putendl_fd("Wrong argument", 0);
 			return (0);
 		}
-		data.Error = initdata(&data, &data.tex, av[1]);
 		data.mlx_ptr = 0;
 		data.mlx_ptr = mlx_init();
+		data.Error = initdata(&data, &data.tex, av[1]);
 		if (data.mlx_ptr == 0)
 		{
 			ft_putendl_fd("Error :", 0);
@@ -49,6 +49,11 @@ int 		main(int ac, char **av)
 		if ((data.Error = initgame(&data, &data.tex)) != NULL)
 		{
 			ft_putendl_fd("Error :", 0);
+			ft_putendl_fd(data.Error, 0);
+			exit(0);
+		}
+		if (data.Error != NULL)
+		{
 			ft_putendl_fd(data.Error, 0);
 			exit(0);
 		}

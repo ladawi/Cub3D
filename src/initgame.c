@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 18:01:45 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 18:03:04 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 11:43:13 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ char		*initgame(data_t *data, texture_t *textures)
 	}
 	free(lineconfig);
 	if ((data->Config.y == 0 && data->Config.l == 0) && data->Error == 0)
-		data->Error == "No map";
+		data->Error = "No map";
 	return (data->Error);
 }

@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 16:45:16 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 11:23:56 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 char		*check_map(data_t *data)
 {

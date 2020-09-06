@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 19:10:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 12:06:59 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ char			*parsing(data_t *data, texture_t *textures, char *line)
 		free(line);
 		*line = 0;
 	}
-	if (*line)
-	{
-		free(line);
-		*line = 0;
-	}
+	(*line) ? free(line) : 0;
 	return (data->Error);
 }

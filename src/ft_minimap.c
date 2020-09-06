@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:52:22 by ladawi            #+#    #+#             */
-/*   Updated: 2020/08/25 16:16:36 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 11:26:15 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/Cub3d.h"
+#include "../includes/Cub3D.h"
 
 int		ft_draw_pixel_map(data_t *data, int x, int y, char c)
 {
@@ -61,5 +61,6 @@ int		ft_minimap(data_t *data)
 	(data->Minimap.scalex < 1) ? data->Minimap.scalex = 1 : 0;
 	(data->Minimap.scaley < 1) ? data->Minimap.scaley = 1 : 0;
 	ft_minimap_2(data);
+	data->mapupdate = 0;
 	return (0);
 }

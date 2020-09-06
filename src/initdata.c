@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 12:02:39 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ char		*initdata(data_t *data, texture_t *textures, char *pathconfig)
 	data->res_width = -1;
 	data->res_height = -1;
 	data->idparsing = 0;
-	data->max_res_width = 2560;
-	data->max_res_height = 1440;
+	data->max_res_width = 0;
+	data->max_res_height = 0;
+	mlx_get_screen_size(data->mlx_ptr,
+		&data->max_res_width, &data->max_res_height);
 	data->fd = open(pathconfig, O_RDONLY);
 	data->fd2 = open(pathconfig, O_RDONLY);
 	data->Config.l = 0;
