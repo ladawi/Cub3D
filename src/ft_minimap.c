@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:52:22 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 11:26:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 12:20:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ int		ft_minimap(data_t *data)
 	(data->Minimap.scalex < 1) ? data->Minimap.scalex = 1 : 0;
 	(data->Minimap.scaley < 1) ? data->Minimap.scaley = 1 : 0;
 	ft_minimap_2(data);
-	data->mapupdate = 0;
 	return (0);
 }
