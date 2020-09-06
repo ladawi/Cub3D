@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:51:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:12:07 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-char		*get_color3(data_t *data, char *line)
+char		*get_color3(t_data *data, char *line)
 {
 	if (data->color.tab[0] > 255 || data->color.tab[0] < 0)
 		return ("\033[1;91mRed color in floor or Ceiling not valid\n");
@@ -31,7 +31,7 @@ char		*get_color3(data_t *data, char *line)
 	return (0);
 }
 
-char		*get_color2(data_t *data, char *line)
+char		*get_color2(t_data *data, char *line)
 {
 	int i;
 
@@ -55,7 +55,7 @@ char		*get_color2(data_t *data, char *line)
 		return ("Wrong color input");
 }
 
-char		*get_color(data_t *data, char *line)
+char		*get_color(t_data *data, char *line)
 {
 	int		i;
 

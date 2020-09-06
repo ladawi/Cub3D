@@ -6,20 +6,20 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:32:57 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void	update_window(data_t *data)
+void	update_window(t_data *data)
 {
 	if (data->mlx_win != 0)
 		mlx_put_image_to_window(data->mlx_ptr,
-			data->mlx_win, data->sImg.img, 0, 0);
+			data->mlx_win, data->simg.img, 0, 0);
 }
 
-int		exitwindow(data_t *data)
+int		exitwindow(t_data *data)
 {
 	freeall(data);
 	mlx_clear_window(data->mlx_ptr, data->mlx_win);

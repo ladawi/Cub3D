@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:13:28 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:55:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define X_EVENT_EXIT			17
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3
+
 // # define KEY_W			13
 // # define KEY_A			0
 // # define KEY_S			1
@@ -51,7 +52,6 @@
 # define KEY_BACKWARD	65364
 # define KEY_ESC		65307
 
-
 # define NBTEXTURES		6
 # define M_2PI			6.28318530718
 
@@ -64,7 +64,7 @@
 # define EAST	2
 # define WEST	3
 
-typedef struct	game_s
+typedef struct	s_game
 {
 	float	fplayerx;
 	float	fplayery;
@@ -81,24 +81,24 @@ typedef struct	game_s
 	double	dplanex;
 	double	dplaney;
 	char	prevpos;
-}				game_t;
+}				t_game;
 
-typedef struct	pos_s
+typedef struct	s_pos
 {
 	double	x;
 	double	y;
-}				pos_t;
+}				t_pos;
 
-typedef struct	image_s
+typedef struct	s_image
 {
 	void	*img;
 	int		*str;
 	int		bpp;
 	int		size_line;
 	int		endian;
-}				image_t;
+}				t_image;
 
-typedef struct tex_s
+typedef struct	s_tex
 {
 	char	*path;
 	void	*tex;
@@ -108,50 +108,47 @@ typedef struct tex_s
 	int		bpp;
 	int		size_line;
 	int		endian;
-}				tex_t;
+}				t_tex;
 
-
-typedef struct	textures_s
+typedef struct	s_textures
 {
-	tex_t		tex[NBTEXTURES];
-	
-	image_t		sprite;
+	t_tex		tex[NBTEXTURES];
+	t_image		sprite;
 	int			s_x;
 	int			s_y;
-}				texture_t;
+}				t_texture;
 
-typedef struct Sprit_s
+typedef struct	s_sprit
 {
 	double		x;
 	double		y;
 	double		dist;
 	int			order;
 	int			texture;
-}				Sprit_t;
+}				t_sprit;
 
-typedef struct	Sprites_s
+typedef struct	s_sprites
 {
-	Sprit_t		*SpritesPos;
-	double		*ZBuffer;
-	int			numSprites;
-	int 		*spriteOrder;
-	double		*spriteDistance;
-}				Sprites_t;
+	t_sprit		*spritespos;
+	int			numsprites;
+	int			*spriteorder;
+	double		*spritedistance;
+}				t_sprites;
 
-typedef struct	Config_s
+typedef struct	s_config
 {
 	int		l;
 	int		y;
-	int		indexSprite;
-}				Config_t;
+	int		indexsprite;
+}				t_config;
 
-typedef struct	Map_s
+typedef struct	s_map
 {
-	int		MaxHeight;
-	int		MaxWidth;
-}				Map_t;
+	int		maxheight;
+	int		maxwidth;
+}				t_map;
 
-typedef struct Minimap_s
+typedef struct	s_minimap
 {
 	int		x;
 	int		y;
@@ -159,32 +156,32 @@ typedef struct Minimap_s
 	int		mapy;
 	int		scalex;
 	int		scaley;
-}				Minimap_t;
+}				t_minimap;
 
-typedef struct Sdata_s
+typedef struct	s_sdata
 {
-	int		*spriteOrder;
-	double	*spriteDistance;
+	int		*spriteorder;
+	double	*spritedistance;
 	int		fix;
-	double	spriteX;
-	double	spriteY;
-	double	invDet;
-	double	transformX;
-	double	transformY;
-	int		spriteScreenX;
-	int		vMoveScreen;
-	int		SpriteHeight;
-	int		drawStartY;
-	int		drawStartX;
-	int		drawEndX;
-	int		drawEndY;
-	int		spriteWidth;
+	double	spritex;
+	double	spritey;
+	double	invdet;
+	double	transformx;
+	double	transformy;
+	int		spritescreenx;
+	int		vmovescreen;
+	int		spriteheight;
+	int		drawstarty;
+	int		drawstartx;
+	int		drawendx;
+	int		drawendy;
+	int		spritewidth;
 	int		stripe;
-	int		texX;
-	int		texY;
-}				Sdata_t;
+	int		texx;
+	int		texy;
+}				t_sdata;
 
-typedef	struct Var_s
+typedef	struct	s_var
 {
 	int		x;
 	int		y;
@@ -193,36 +190,35 @@ typedef	struct Var_s
 	int		u;
 	int		h;
 	int		d;
-}				Var_t;
+}				t_var;
 
-typedef struct ray_s
+typedef struct	s_ray
 {
-	int hit;
-	int mapx;
-   	int mapy;
-	int stepx;
-	int stepy;
-	int texy;
-	int side;
-	double sidedistx;
-	double sidedisty;
-	double deltadistx;
-	double deltadisty;
-	double perpwalldist;
-	double camerax;
-	double raydirx;
-	double raydiry;
-	float time_elapsed;
-
+	int		hit;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
+	int		texy;
+	int		side;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	perpwalldist;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	float	time_elapsed;
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
 	int		texx;
 	double	wallx;
 	int		color;
-}				ray_t;
+}				t_ray;
 
-typedef struct header_s
+typedef struct	s_header
 {
 	short		type;
 	int			size;
@@ -232,18 +228,17 @@ typedef struct header_s
 	short		bpp;
 	int			raw_size;
 	int			res;
-}				header_t;
+}				t_header;
 
-typedef struct	Color_s
+typedef struct	s_color
 {
 	unsigned int tab[3];
-}				Color_t;
+}				t_color;
 
-
-typedef struct	data_s
+typedef struct	s_data
 {
-    void		*mlx_ptr;
-    void		*mlx_win;
+	void		*mlx_ptr;
+	void		*mlx_win;
 	int			fd;
 	int			fd2;
 	int			res_width;
@@ -259,56 +254,54 @@ typedef struct	data_s
 	int			*image;
 	int			sizeline;
 	char		*line2;
-	Sprites_t	Sprites;
-	Config_t	Config;
-	Map_t		Map;
-	/* Game loop data */
-	game_t		game;
-	texture_t	tex;
-	/* Window */
-	image_t		sImg;
-	Minimap_t	Minimap;
-	Var_t		Var;
-	Sdata_t		Sdata;
-	ray_t		ray;
-	Color_t		color;
-}                 data_t;
+	t_sprites	sprites;
+	t_config	config;
+	t_map		mapcarac;
+	t_game		game;
+	t_texture	tex;
+	t_image		simg;
+	t_minimap	minimap;
+	t_var		var;
+	t_sdata		sdata;
+	t_ray		ray;
+	t_color		color;
+}				t_data;
 
-char		*initgame(data_t *data, texture_t *textures);
-char		*initdata(data_t *data, texture_t *textures, char *pathconfig);
-char		*parsing(data_t *data, texture_t *textures, char *line);
-char		*get_resolution(data_t *data, char *line);
-char		*get_texture_wall(data_t *data, char *line, int nb);
-char		*get_sprite_texture(data_t *data, char *line);
-char		*get_color(data_t *data, char *line);
-char		*get_map_heart_2(data_t *data, char *line, int i);
-void		ft_rotate_player(data_t *data, double angle);
-char		*get_map_2(data_t *data);
-char		*drawsprites(data_t *data, double *ZBuffer);
-char		*check_map2(data_t *data, int p, int u, int i);
-char		*check_map3(data_t *data, int p, int u, int i);
-char		*check_map(data_t *data);
-char		*check_map_2(data_t *data);
-char		*get_map(data_t *data, char *line);
-char		*ft_screenshot(data_t *data);
-int			gameloop(data_t *data);
-int			ft_minimap(data_t *data);
-char		*ft_spritesorting(data_t *data);
-int			keypress(int keycode, data_t *data);
-int			keyrelease(int keycode, data_t *data);
-void		freeall(data_t *data);
-int			exitwindow(data_t *data);
-int			exit_game(data_t *data, int code);
-void		update_window(data_t *data);
-void		move_player_front(data_t *data, float time_elapsed);
-void		move_player_back(data_t *data, float time_elapsed);
-void		move_player_left(data_t *data, float time_elapsed);
-void		move_player_right(data_t *data, float time_elapsed);
-void		drawcursor(data_t *data);
-void		ft_putpixel(data_t *data, int side, int x, int y);
-void		gameloop2(data_t *data, int x);
-void		gameloop3(data_t *data);
-void		set_tex(data_t *data);
-void		draw_column(data_t *data, int x);
+char		*initgame(t_data *data, t_texture *textures);
+char		*initdata(t_data *data, t_texture *textures, char *pathconfig);
+char		*parsing(t_data *data, t_texture *textures, char *line);
+char		*get_resolution(t_data *data, char *line);
+char		*get_texture_wall(t_data *data, char *line, int nb);
+char		*get_sprite_texture(t_data *data, char *line);
+char		*get_color(t_data *data, char *line);
+char		*get_map_heart_2(t_data *data, char *line, int i);
+void		ft_rotate_player(t_data *data, double angle);
+char		*get_map_2(t_data *data);
+char		*drawsprites(t_data *data, double *zbuffer);
+char		*check_map2(t_data *data, int p, int u, int i);
+char		*check_map3(t_data *data, int p, int u, int i);
+char		*check_map(t_data *data);
+char		*check_map_2(t_data *data);
+char		*get_map(t_data *data, char *line);
+char		*ft_screenshot(t_data *data);
+int			gameloop(t_data *data);
+int			ft_minimap(t_data *data);
+char		*ft_spritesorting(t_data *data);
+int			keypress(int keycode, t_data *data);
+int			keyrelease(int keycode, t_data *data);
+void		freeall(t_data *data);
+int			exitwindow(t_data *data);
+int			exit_game(t_data *data, int code);
+void		update_window(t_data *data);
+void		move_player_front(t_data *data, float time_elapsed);
+void		move_player_back(t_data *data, float time_elapsed);
+void		move_player_left(t_data *data, float time_elapsed);
+void		move_player_right(t_data *data, float time_elapsed);
+void		drawcursor(t_data *data);
+void		ft_putpixel(t_data *data, int side, int x, int y);
+void		gameloop2(t_data *data, int x);
+void		gameloop3(t_data *data);
+void		set_tex(t_data *data);
+void		draw_column(t_data *data, int x);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 18:01:45 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:57 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-int			setid(data_t *data, char *str)
+int			setid(t_data *data, char *str)
 {
 	int		i;
 	char	*tofree;
@@ -24,7 +24,7 @@ int			setid(data_t *data, char *str)
 	return (1);
 }
 
-char		*initgame(data_t *data, texture_t *textures)
+char		*initgame(t_data *data, t_texture *textures)
 {
 	char	*lineconfig;
 	char	*tofree;
@@ -42,7 +42,7 @@ char		*initgame(data_t *data, texture_t *textures)
 		free(data->idparsing);
 	}
 	free(lineconfig);
-	if ((data->Config.y == 0 && data->Config.l == 0) && data->error == 0)
+	if ((data->config.y == 0 && data->config.l == 0) && data->error == 0)
 		data->error = "No map";
 	return (data->error);
 }

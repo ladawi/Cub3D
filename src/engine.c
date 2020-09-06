@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:30:07 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:12:07 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void		checkraydir(data_t *data)
+void		checkraydir(t_data *data)
 {
 	if (data->ray.raydirx < 0)
 	{
@@ -40,7 +40,7 @@ void		checkraydir(data_t *data)
 	}
 }
 
-void		gameloop2(data_t *data, int x)
+void		gameloop2(t_data *data, int x)
 {
 	data->ray.camerax = 2 * (data->res_width - 1 - x)
 		/ (double)(data->res_width) - 1;
@@ -56,7 +56,7 @@ void		gameloop2(data_t *data, int x)
 	checkraydir(data);
 }
 
-void		gameloop3(data_t *data)
+void		gameloop3(t_data *data)
 {
 	while (data->ray.hit == 0 || data->ray.hit == 2)
 	{
@@ -85,7 +85,7 @@ void		gameloop3(data_t *data)
 			+ (1 - data->ray.stepy) / 2)) / data->ray.raydiry;
 }
 
-void		set_tex(data_t *data)
+void		set_tex(t_data *data)
 {
 	if (data->ray.side == 0 && data->ray.raydirx > 0)
 	{
@@ -113,7 +113,7 @@ void		set_tex(data_t *data)
 	}
 }
 
-void		draw_column(data_t *data, int x)
+void		draw_column(t_data *data, int x)
 {
 	int y;
 
@@ -121,7 +121,7 @@ void		draw_column(data_t *data, int x)
 	while (++y < data->res_height)
 	{
 		if (y <= data->ray.drawstart)
-			data->sImg.str[x + (data->sImg.size_line * y)] = data->c_color;
+			data->simg.str[x + (data->simg.size_line * y)] = data->c_color;
 		else if (y > data->ray.drawstart && y < data->ray.drawend)
 		{
 			if (data->ray.hit == 1 && data->ray.raydirx > 0 && !data->ray.side)
@@ -134,6 +134,6 @@ void		draw_column(data_t *data, int x)
 				ft_putpixel(data, NORTH, x, y);
 		}
 		else if (y >= data->ray.drawend)
-			data->sImg.str[x + (data->sImg.size_line * y)] = data->f_color;
+			data->simg.str[x + (data->simg.size_line * y)] = data->f_color;
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:38:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:52:53 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void		ft_rotate_player(data_t *data, double angle)
+void		ft_rotate_player(t_data *data, double angle)
 {
 	double olddirx;
 	double oldplanex;
@@ -28,24 +28,25 @@ void		ft_rotate_player(data_t *data, double angle)
 		* sin(angle) + data->game.dplaney * cos(angle);
 }
 
-char		*check_map2(data_t *data, int p, int u, int i)
+char		*check_map2(t_data *data, int p, int u, int i)
 {
 	if (p == 0 && ft_findchar(data->map[p][u], "1 ") == 0
 		&& u < ft_strlen(data->map[0]))
 		return ("Wall error North");
-	if (p == data->Map.MaxHeight - 1 && ft_findchar(data->map[p][u], "1 ") == 0
-		&& u < ft_strlen(data->map[data->Map.MaxHeight - 1]))
+	if (p == data->mapcarac.maxheight - 1
+		&& ft_findchar(data->map[p][u], "1 ") == 0
+		&& u < ft_strlen(data->map[data->mapcarac.maxheight - 1]))
 		return ("Wall error South");
 	if (ft_findchar(data->map[p][u], "2") != 0)
 	{
-		data->Sprites.SpritesPos[data->Config.indexSprite].x = u + 0.5;
-		data->Sprites.SpritesPos[data->Config.indexSprite].y = p + 0.5;
-		data->Config.indexSprite++;
+		data->sprites.spritespos[data->config.indexsprite].x = u + 0.5;
+		data->sprites.spritespos[data->config.indexsprite].y = p + 0.5;
+		data->config.indexsprite++;
 	}
 	return (0);
 }
 
-char		*check_map3(data_t *data, int p, int u, int i)
+char		*check_map3(t_data *data, int p, int u, int i)
 {
 	while (ft_findchar(data->map[0 + i][u], " 02") != 0
 				&& u < ft_strlen(data->map[0]) && u > 1)
@@ -57,13 +58,13 @@ char		*check_map3(data_t *data, int p, int u, int i)
 			return ("error : map is not closed");
 	}
 	i = 0;
-	while (ft_findchar(data->map[data->Map.MaxHeight - 1 - i][u], " 02")
-		!= 0 && u < ft_strlen(data->map[data->Map.MaxHeight - 1])
+	while (ft_findchar(data->map[data->mapcarac.maxheight - 1 - i][u], " 02")
+		!= 0 && u < ft_strlen(data->map[data->mapcarac.maxheight - 1])
 			&& u > 1)
 	{
-		if (ft_findchar(data->map[data->Map.MaxHeight - 1 - i][u - 1]
+		if (ft_findchar(data->map[data->mapcarac.maxheight - 1 - i][u - 1]
 			, "1 ") != 0 && ft_findchar(data->map
-				[data->Map.MaxHeight - 1 - i][u + 1], "1 ") != 0)
+				[data->mapcarac.maxheight - 1 - i][u + 1], "1 ") != 0)
 			i++;
 		else
 			return ("error : map is not closed");

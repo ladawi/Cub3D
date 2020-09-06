@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:57 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void		initdata_game(data_t *data)
+void		initdata_game(t_data *data)
 {
 	data->game.prevpos = '0';
 	data->game.fplayerx = 0;
@@ -29,7 +29,7 @@ void		initdata_game(data_t *data)
 	data->game.dplaney = 0.66;
 }
 
-char		*initdata(data_t *data, texture_t *textures, char *pathconfig)
+char		*initdata(t_data *data, t_texture *textures, char *pathconfig)
 {
 	data->error = 0;
 	data->res_width = -1;
@@ -42,15 +42,15 @@ char		*initdata(data_t *data, texture_t *textures, char *pathconfig)
 		&data->max_res_width, &data->max_res_height);
 	data->fd = open(pathconfig, O_RDONLY);
 	data->fd2 = open(pathconfig, O_RDONLY);
-	data->Config.l = 0;
-	data->Config.y = 0;
-	data->Config.indexSprite = 0;
+	data->config.l = 0;
+	data->config.y = 0;
+	data->config.indexsprite = 0;
 	data->ray.time_elapsed = 0.03;
 	data->ray.mapx = 0;
 	data->ray.mapy = 0;
 	if (data->fd < 0 || data->fd2 < 0)
 		return ("Wrong .cub file");
-	data->Sprites.numSprites = 0;
+	data->sprites.numsprites = 0;
 	initdata_game(data);
 	return (0);
 }

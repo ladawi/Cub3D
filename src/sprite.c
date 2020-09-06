@@ -6,100 +6,100 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:08:54 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:49:04 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void		spritecalc(data_t *data)
+void		spritecalc(t_data *data)
 {
-	data->Sdata.fix = 0;
-	data->Sdata.spriteX = data->Sprites.SpritesPos
-		[data->Sdata.spriteOrder[data->Var.u]].x - data->game.fplayerx;
-	data->Sdata.spriteY = data->Sprites.SpritesPos
-		[data->Sdata.spriteOrder[data->Var.u]].y - data->game.fplayery;
-	data->Sdata.invDet = 1.0 / (data->game.dplanex * data->game.ddiry
+	data->sdata.fix = 0;
+	data->sdata.spritex = data->sprites.spritespos
+		[data->sdata.spriteorder[data->var.u]].x - data->game.fplayerx;
+	data->sdata.spritey = data->sprites.spritespos
+		[data->sdata.spriteorder[data->var.u]].y - data->game.fplayery;
+	data->sdata.invdet = 1.0 / (data->game.dplanex * data->game.ddiry
 		- data->game.ddirx * data->game.dplaney);
-	data->Sdata.transformX = data->Sdata.invDet * (data->game.ddiry
-		* data->Sdata.spriteX - data->game.ddirx * data->Sdata.spriteY);
-	data->Sdata.transformY = data->Sdata.invDet * (-data->game.dplaney
-		* data->Sdata.spriteX + data->game.dplanex * data->Sdata.spriteY);
-	data->Sdata.spriteScreenX = (int)((data->res_width / 2)
-		* (1 + data->Sdata.transformX / data->Sdata.transformY));
-	data->Sdata.vMoveScreen = (int)(VMOVE / data->Sdata.transformY);
+	data->sdata.transformx = data->sdata.invdet * (data->game.ddiry
+		* data->sdata.spritex - data->game.ddirx * data->sdata.spritey);
+	data->sdata.transformy = data->sdata.invdet * (-data->game.dplaney
+		* data->sdata.spritex + data->game.dplanex * data->sdata.spritey);
+	data->sdata.spritescreenx = (int)((data->res_width / 2)
+		* (1 + data->sdata.transformx / data->sdata.transformy));
+	data->sdata.vmovescreen = (int)(VMOVE / data->sdata.transformy);
 }
 
-void		spritecalc2(data_t *data)
+void		spritecalc2(t_data *data)
 {
-	data->Sdata.SpriteHeight =
-		abs((int)(data->res_height / data->Sdata.transformY)) / VDIV;
-	data->Sdata.drawStartY = -data->Sdata.SpriteHeight / 2
-		+ data->res_height / 2 + data->Sdata.vMoveScreen;
-	(data->Sdata.drawStartY < 0) ? data->Sdata.drawStartY = 0 : 0;
-	data->Sdata.drawEndY = data->Sdata.SpriteHeight / 2
-		+ data->res_height / 2 + data->Sdata.vMoveScreen;
-	(data->Sdata.drawEndY >= data->res_height) ?
-		data->Sdata.drawEndY = data->res_height : 0;
-	data->Sdata.spriteWidth =
-		abs((int)(data->res_height / data->Sdata.transformY)) / UDIV;
-	data->Sdata.drawStartX = -data->Sdata.spriteWidth / 2
-		+ data->Sdata.spriteScreenX;
-	(data->Sdata.drawStartX < 0) ? data->Sdata.drawStartX = 0 : 0;
-	data->Sdata.drawEndX = data->Sdata.spriteWidth / 2
-		+ data->Sdata.spriteScreenX;
-	(data->Sdata.drawEndX > data->res_width)
-		? data->Sdata.drawEndX = data->res_width : 0;
-	data->Sdata.stripe = data->Sdata.drawStartX - 1;
-	(data->Sdata.drawEndX == data->res_width) ? data->Sdata.fix = 1 : 0;
+	data->sdata.spriteheight =
+		abs((int)(data->res_height / data->sdata.transformy)) / VDIV;
+	data->sdata.drawstarty = -data->sdata.spriteheight / 2
+		+ data->res_height / 2 + data->sdata.vmovescreen;
+	(data->sdata.drawstarty < 0) ? data->sdata.drawstarty = 0 : 0;
+	data->sdata.drawendy = data->sdata.spriteheight / 2
+		+ data->res_height / 2 + data->sdata.vmovescreen;
+	(data->sdata.drawendy >= data->res_height) ?
+		data->sdata.drawendy = data->res_height : 0;
+	data->sdata.spritewidth =
+		abs((int)(data->res_height / data->sdata.transformy)) / UDIV;
+	data->sdata.drawstartx = -data->sdata.spritewidth / 2
+		+ data->sdata.spritescreenx;
+	(data->sdata.drawstartx < 0) ? data->sdata.drawstartx = 0 : 0;
+	data->sdata.drawendx = data->sdata.spritewidth / 2
+		+ data->sdata.spritescreenx;
+	(data->sdata.drawendx > data->res_width)
+		? data->sdata.drawendx = data->res_width : 0;
+	data->sdata.stripe = data->sdata.drawstartx - 1;
+	(data->sdata.drawendx == data->res_width) ? data->sdata.fix = 1 : 0;
 }
 
-void		drawsprites2(data_t *data, unsigned int color, double *zbuffer)
+void		drawsprites2(t_data *data, unsigned int color, double *zbuffer)
 {
-	while (++data->Sdata.stripe < data->Sdata.drawEndX)
+	while (++data->sdata.stripe < data->sdata.drawendx)
 	{
-		data->Sdata.texX = (int)(256 * (data->Sdata.stripe -
-			(-data->Sdata.spriteWidth / 2 + data->Sdata.spriteScreenX))
-				* data->tex.s_x / data->Sdata.spriteWidth) / 256;
-		data->Var.h = data->Sdata.drawStartY;
-		if (data->Sdata.transformY > 0 && data->Sdata.stripe > 0 &&
-			data->Sdata.stripe < data->res_width && data->Sdata.transformY <
-				zbuffer[data->res_width - data->Sdata.stripe])
+		data->sdata.texx = (int)(256 * (data->sdata.stripe -
+			(-data->sdata.spritewidth / 2 + data->sdata.spritescreenx))
+				* data->tex.s_x / data->sdata.spritewidth) / 256;
+		data->var.h = data->sdata.drawstarty;
+		if (data->sdata.transformy > 0 && data->sdata.stripe > 0 &&
+			data->sdata.stripe < data->res_width && data->sdata.transformy <
+				zbuffer[data->res_width - data->sdata.stripe])
 		{
-			while (++data->Var.h < data->Sdata.drawEndY)
+			while (++data->var.h < data->sdata.drawendy)
 			{
-				data->Var.d = (data->Var.h - data->Sdata.vMoveScreen) * 256 -
-					data->res_height * 128 + data->Sdata.SpriteHeight * 128;
-				data->Sdata.texY = ((data->Var.d * data->tex.s_y) /
-					data->Sdata.SpriteHeight) / 256;
+				data->var.d = (data->var.h - data->sdata.vmovescreen) * 256 -
+					data->res_height * 128 + data->sdata.spriteheight * 128;
+				data->sdata.texy = ((data->var.d * data->tex.s_y) /
+					data->sdata.spriteheight) / 256;
 				color = data->tex.sprite.str[data->tex.s_x
-					* data->Sdata.texY + data->Sdata.texX];
+					* data->sdata.texy + data->sdata.texx];
 				if ((color & 0x00FFFFFF) != 0)
-					data->sImg.str[(data->res_width - data->Sdata.stripe
-						- data->Sdata.fix) +
-							(data->sImg.size_line * data->Var.h)] = color;
+					data->simg.str[(data->res_width - data->sdata.stripe
+						- data->sdata.fix) +
+							(data->simg.size_line * data->var.h)] = color;
 			}
 		}
 	}
 }
 
-char		*drawsprites(data_t *data, double *zbuffer)
+char		*drawsprites(t_data *data, double *zbuffer)
 {
 	unsigned int	color;
 	int				*tofree;
 
-	data->Var.u = -1;
-	data->Var.i = -1;
-	data->Var.h = -1;
-	data->Var.d = 0;
+	data->var.u = -1;
+	data->var.i = -1;
+	data->var.h = -1;
+	data->var.d = 0;
 	ft_spritesorting(data);
-	while (++data->Var.u < data->Sprites.numSprites)
+	while (++data->var.u < data->sprites.numsprites)
 	{
 		spritecalc(data);
 		spritecalc2(data);
 		drawsprites2(data, color, zbuffer);
 	}
-	tofree = data->Sdata.spriteOrder;
+	tofree = data->sdata.spriteorder;
 	if (tofree)
 	{
 		free(tofree);

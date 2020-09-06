@@ -6,22 +6,22 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:54:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:03:10 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void		ft_putpixel(data_t *data, int side, int x, int y)
+void		ft_putpixel(t_data *data, int side, int x, int y)
 {
 	data->ray.texy = (y - data->ray.drawstart)
 		* data->tex.tex[side].height / data->ray.lineheight;
 	data->ray.color = data->tex.tex[side].str[data->tex.tex[side].height
 		* data->ray.texy + data->ray.texx];
-	data->sImg.str[x + (data->sImg.size_line * y)] = data->ray.color;
+	data->simg.str[x + (data->simg.size_line * y)] = data->ray.color;
 }
 
-void		wallcasting(data_t *data, int x, double *zbuffer)
+void		wallcasting(t_data *data, int x, double *zbuffer)
 {
 	while (++x < data->res_width)
 	{
@@ -45,7 +45,7 @@ void		wallcasting(data_t *data, int x, double *zbuffer)
 	}
 }
 
-void		player_move(data_t *data)
+void		player_move(t_data *data)
 {
 	if (data->game.fvforward != 0)
 		move_player_front(data, data->ray.time_elapsed);
@@ -61,7 +61,7 @@ void		player_move(data_t *data)
 		ft_rotate_player(data, data->game.frotaright * data->ray.time_elapsed);
 }
 
-int			gameloop(data_t *data)
+int			gameloop(t_data *data)
 {
 	int		x;
 	double	zbuffer[data->res_width];

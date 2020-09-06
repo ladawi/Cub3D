@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:49:24 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			check_arg(char *str)
 		return (0);
 }
 
-void		print_err_and_exit(data_t *data)
+void		print_err_and_exit(t_data *data)
 {
 	if (data->error != 0)
 	{
@@ -30,7 +30,7 @@ void		print_err_and_exit(data_t *data)
 	}
 }
 
-void		run_game(data_t *data)
+void		run_game(t_data *data)
 {
 	if (!(data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_width,
 		data->res_height, "Cub3D")))
@@ -38,11 +38,11 @@ void		run_game(data_t *data)
 		data->error = "mlx_new_window failed";
 		print_err_and_exit(data);
 	}
-	data->sImg.img = mlx_new_image(data->mlx_ptr,
+	data->simg.img = mlx_new_image(data->mlx_ptr,
 		data->res_width, data->res_height);
-	data->sImg.str = (int *)mlx_get_data_addr(data->sImg.img, &data->sImg.bpp,
-		&data->sImg.size_line, &data->sImg.endian);
-	data->sImg.size_line = data->sImg.size_line / 4;
+	data->simg.str = (int *)mlx_get_data_addr(data->simg.img, &data->simg.bpp,
+		&data->simg.size_line, &data->simg.endian);
+	data->simg.size_line = data->simg.size_line / 4;
 	mlx_hook(data->mlx_win, X_EVENT_KEY_PRESS, KeyPressMask, &keypress, data);
 	mlx_hook(data->mlx_win, X_EVENT_KEY_RELEASE, KeyReleaseMask,
 		&keyrelease, data);
@@ -51,13 +51,13 @@ void		run_game(data_t *data)
 	mlx_loop(data->mlx_ptr);
 }
 
-void		take_screenshot(data_t *data)
+void		take_screenshot(t_data *data)
 {
-	data->sImg.img = mlx_new_image(data->mlx_ptr, data->res_width,
+	data->simg.img = mlx_new_image(data->mlx_ptr, data->res_width,
 		data->res_height);
-	data->sImg.str = (int *)mlx_get_data_addr(data->sImg.img, &data->sImg.bpp,
-		&data->sImg.size_line, &data->sImg.endian);
-	data->sImg.size_line = data->sImg.size_line / 4;
+	data->simg.str = (int *)mlx_get_data_addr(data->simg.img, &data->simg.bpp,
+		&data->simg.size_line, &data->simg.endian);
+	data->simg.size_line = data->simg.size_line / 4;
 	gameloop(data);
 	ft_screenshot(data);
 	freeall(data);
@@ -67,7 +67,7 @@ void		take_screenshot(data_t *data)
 
 int			main(int ac, char **av)
 {
-	data_t		data;
+	t_data		data;
 
 	if (ac > 0 && ac < 4)
 	{

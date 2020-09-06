@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 13:15:34 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:02:36 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void		move_player_front(data_t *data, float time_elapsed)
+void		move_player_front(t_data *data, float time_elapsed)
 {
 	if (ft_findchar(data->map[(int)(data->game.fplayery)]
 		[(int)(data->game.fplayerx + data->game.ddirx *
@@ -40,7 +40,7 @@ void		move_player_front(data_t *data, float time_elapsed)
 	}
 }
 
-void		move_player_back(data_t *data, float time_elapsed)
+void		move_player_back(t_data *data, float time_elapsed)
 {
 	if (ft_findchar(data->map[(int)(data->game.fplayery)]
 		[(int)(data->game.fplayerx - data->game.ddirx *
@@ -69,7 +69,7 @@ void		move_player_back(data_t *data, float time_elapsed)
 	}
 }
 
-void		move_player_left(data_t *data, float time_elapsed)
+void		move_player_left(t_data *data, float time_elapsed)
 {
 	if (ft_findchar(data->map[(int)(data->game.fplayery)]
 		[(int)(data->game.fplayerx + data->game.ddiry *
@@ -98,7 +98,7 @@ void		move_player_left(data_t *data, float time_elapsed)
 	}
 }
 
-void		move_player_right(data_t *data, float time_elapsed)
+void		move_player_right(t_data *data, float time_elapsed)
 {
 	if (ft_findchar(data->map[(int)(data->game.fplayery)]
 		[(int)(data->game.fplayerx + -data->game.ddiry *

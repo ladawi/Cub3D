@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 11:24:15 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 16:57:32 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:46:52 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-int		keypress(int keycode, data_t *data)
+int		keypress(int keycode, t_data *data)
 {
 	(keycode == KEY_ESC) ? exitwindow(data) : 0;
 	if (keycode == KEY_A)
@@ -30,7 +30,7 @@ int		keypress(int keycode, data_t *data)
 	return (0);
 }
 
-void	freeall(data_t *data)
+void	freeall(t_data *data)
 {
 	int i;
 
@@ -40,7 +40,7 @@ void	freeall(data_t *data)
 		free(data->line2);
 		data->line2 = 0;
 	}
-	while (++i < data->Config.l)
+	while (++i < data->config.l)
 	{
 		if (data->map[i])
 		{
@@ -48,10 +48,10 @@ void	freeall(data_t *data)
 			data->map[i] = 0;
 		}
 	}
-	free(data->Sprites.SpritesPos);
+	free(data->sprites.spritespos);
 }
 
-int		keyrelease(int keycode, data_t *data)
+int		keyrelease(int keycode, t_data *data)
 {
 	if (keycode == KEY_A)
 		data->game.fstrafeleft = 0;

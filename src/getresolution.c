@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:20:49 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-char			*get_resolutiom_check(data_t *data, char *line)
+char			*get_resolutiom_check(t_data *data, char *line)
 {
 	if (data->res_height <= 0 || data->res_width <= 0)
 	{
@@ -28,7 +28,7 @@ char			*get_resolutiom_check(data_t *data, char *line)
 	return (data->error);
 }
 
-char			*all_c_ok(data_t *data, char *line)
+char			*all_c_ok(t_data *data, char *line)
 {
 	int i;
 
@@ -42,7 +42,7 @@ char			*all_c_ok(data_t *data, char *line)
 	return (data->error);
 }
 
-char			*set_res(data_t *data, char *line, int nb)
+char			*set_res(t_data *data, char *line, int nb)
 {
 	int i;
 
@@ -70,7 +70,7 @@ char			*set_res(data_t *data, char *line, int nb)
 	return (data->error);
 }
 
-char			*get_resolution(data_t *data, char *line)
+char			*get_resolution(t_data *data, char *line)
 {
 	int			i;
 

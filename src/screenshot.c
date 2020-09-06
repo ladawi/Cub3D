@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 09:51:54 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 14:42:18 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:45:28 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-void		init_head(data_t *data, header_t *head)
+void		init_head(t_data *data, t_header *head)
 {
 	head->type = 0x4d42;
 	head->size = 54 + 4 * data->res_height * data->res_width;
@@ -24,9 +24,9 @@ void		init_head(data_t *data, header_t *head)
 	head->res = 2835;
 }
 
-void		create_header(data_t *data, char *header)
+void		create_header(t_data *data, char *header)
 {
-	header_t	head;
+	t_header	head;
 
 	ft_bzero(header, 54);
 	init_head(data, &head);
@@ -43,7 +43,7 @@ void		create_header(data_t *data, char *header)
 	ft_memcpy(&header[42], &head.res, 4);
 }
 
-static	int	*fill_file(data_t *data)
+static	int	*fill_file(t_data *data)
 {
 	int *file;
 	int	i;
@@ -58,8 +58,8 @@ static	int	*fill_file(data_t *data)
 		i = 0;
 		while (i < data->res_width)
 		{
-			k = (data->res_height - 1 - j) * data->sImg.size_line + i;
-			file[k] = data->sImg.str[i + (j * data->sImg.size_line)];
+			k = (data->res_height - 1 - j) * data->simg.size_line + i;
+			file[k] = data->simg.str[i + (j * data->simg.size_line)];
 			i++;
 		}
 		j++;
@@ -67,7 +67,7 @@ static	int	*fill_file(data_t *data)
 	return (file);
 }
 
-char		*ft_screenshot(data_t *data)
+char		*ft_screenshot(t_data *data)
 {
 	int		fdscreen;
 	char	*file;

@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:16:42 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-char		*get_texture_wall(data_t *data, char *line, int nb)
+char		*get_texture_wall(t_data *data, char *line, int nb)
 {
 	line += 2;
 	while (*line == ' ')
@@ -27,7 +27,7 @@ char		*get_texture_wall(data_t *data, char *line, int nb)
 	return (0);
 }
 
-char		*get_sprite_texture(data_t *data, char *line)
+char		*get_sprite_texture(t_data *data, char *line)
 {
 	line += 1;
 	while (*line == ' ')

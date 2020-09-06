@@ -6,60 +6,60 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:52:22 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 12:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cub3D.h"
 
-int		ft_draw_pixel_map(data_t *data, int x, int y, char c)
+int		ft_draw_pixel_map(t_data *data, int x, int y, char c)
 {
 	if (c == '1')
-		data->sImg.str[x + (data->sImg.size_line * y)] = 1264551;
+		data->simg.str[x + (data->simg.size_line * y)] = 1264551;
 	else if (c == '0')
-		data->sImg.str[x + (data->sImg.size_line * y)] = 16777215;
+		data->simg.str[x + (data->simg.size_line * y)] = 16777215;
 	else if (ft_findchar(c, "PNSEW") != 0)
-		data->sImg.str[x + (data->sImg.size_line * y)] = 16711680;
+		data->simg.str[x + (data->simg.size_line * y)] = 16711680;
 	else if (c == '2')
-		data->sImg.str[x + (data->sImg.size_line * y)] = 9849600;
+		data->simg.str[x + (data->simg.size_line * y)] = 9849600;
 	return (0);
 }
 
-int		ft_minimap_2(data_t *data)
+int		ft_minimap_2(t_data *data)
 {
-	while (data->Minimap.mapy < data->Map.MaxWidth)
+	while (data->minimap.mapy < data->mapcarac.maxwidth)
 	{
-		while (data->Minimap.mapx < data->Map.MaxHeight)
+		while (data->minimap.mapx < data->mapcarac.maxheight)
 		{
-			if (data->Minimap.x < data->res_width
-				&& data->Minimap.y < data->res_height)
+			if (data->minimap.x < data->res_width
+				&& data->minimap.y < data->res_height)
 			{
-				ft_draw_pixel_map(data, data->Minimap.x, data->Minimap.y,
-					data->map[data->Minimap.mapx][data->Minimap.mapy]);
+				ft_draw_pixel_map(data, data->minimap.x, data->minimap.y,
+					data->map[data->minimap.mapx][data->minimap.mapy]);
 			}
-			data->Minimap.y++;
-			if (data->Minimap.y % data->Minimap.scaley == 0)
-				data->Minimap.mapx++;
+			data->minimap.y++;
+			if (data->minimap.y % data->minimap.scaley == 0)
+				data->minimap.mapx++;
 		}
-		data->Minimap.y = 0;
-		data->Minimap.x++;
-		data->Minimap.mapx = 0;
-		if (data->Minimap.x % data->Minimap.scalex == 0)
-			data->Minimap.mapy++;
+		data->minimap.y = 0;
+		data->minimap.x++;
+		data->minimap.mapx = 0;
+		if (data->minimap.x % data->minimap.scalex == 0)
+			data->minimap.mapy++;
 	}
 	return (0);
 }
 
-int		ft_minimap(data_t *data)
+int		ft_minimap(t_data *data)
 {
-	data->Minimap.mapx = 0;
-	data->Minimap.mapy = 0;
-	data->Minimap.x = 0;
-	data->Minimap.y = 0;
-	data->Minimap.scalex = (int)(data->res_width / 100);
-	data->Minimap.scaley = (int)(data->res_height / 100);
-	(data->Minimap.scalex < 1) ? data->Minimap.scalex = 1 : 0;
-	(data->Minimap.scaley < 1) ? data->Minimap.scaley = 1 : 0;
+	data->minimap.mapx = 0;
+	data->minimap.mapy = 0;
+	data->minimap.x = 0;
+	data->minimap.y = 0;
+	data->minimap.scalex = (int)(data->res_width / 100);
+	data->minimap.scaley = (int)(data->res_height / 100);
+	(data->minimap.scalex < 1) ? data->minimap.scalex = 1 : 0;
+	(data->minimap.scaley < 1) ? data->minimap.scaley = 1 : 0;
 	ft_minimap_2(data);
 	return (0);
 }
