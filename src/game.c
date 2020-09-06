@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:54:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 11:28:53 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:27:07 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void		wallcasting(data_t *data, int x, double *zbuffer)
 		data->ray.drawend = data->ray.lineheight / 2 + data->res_height / 2;
 		data->ray.wallx = 0;
 		if (data->ray.side == 0)
-			data->ray.wallx = data->game.fPlayerY + data->ray.perpwalldist
+			data->ray.wallx = data->game.fplayery + data->ray.perpwalldist
 				* data->ray.raydiry;
 		else
-			data->ray.wallx = data->game.fPlayerX + data->ray.perpwalldist
+			data->ray.wallx = data->game.fplayerx + data->ray.perpwalldist
 				* data->ray.raydirx;
 		data->ray.wallx -= floor((data->ray.wallx));
 		data->ray.texx = 0;
@@ -47,18 +47,18 @@ void		wallcasting(data_t *data, int x, double *zbuffer)
 
 void		player_move(data_t *data)
 {
-	if (data->game.fVforward != 0)
+	if (data->game.fvforward != 0)
 		move_player_front(data, data->ray.time_elapsed);
-	if (data->game.fVbackward != 0)
+	if (data->game.fvbackward != 0)
 		move_player_back(data, data->ray.time_elapsed);
-	if (data->game.fStrafeLeft != 0)
+	if (data->game.fstrafeleft != 0)
 		move_player_left(data, data->ray.time_elapsed);
-	if (data->game.fStrafeRight != 0)
+	if (data->game.fstraferight != 0)
 		move_player_right(data, data->ray.time_elapsed);
-	if (data->game.fRotaLeft != 0)
-		ft_rotate_player(data, data->game.fRotaLeft * data->ray.time_elapsed);
-	if (data->game.fRotaRight != 0)
-		ft_rotate_player(data, data->game.fRotaRight * data->ray.time_elapsed);
+	if (data->game.frotaleft != 0)
+		ft_rotate_player(data, data->game.frotaleft * data->ray.time_elapsed);
+	if (data->game.frotaright != 0)
+		ft_rotate_player(data, data->game.frotaright * data->ray.time_elapsed);
 }
 
 int			gameloop(data_t *data)

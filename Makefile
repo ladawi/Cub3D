@@ -6,7 +6,7 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/09/04 17:44:29 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/06 16:50:43 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC_LIST=\
 	engine.c\
 	engine2.c\
 	screenshot.c\
-
+	get_colors.c
+	
 SRCO = $(addprefix $(OBJ_DIR)/, $(SRC_LIST:%.c= %.o))
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_LIST))
@@ -65,12 +66,13 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
 	@echo "$(YEL)Made $(NAME)$(END)"
 	@echo "$(PUR)Compiling$(END)"
-	@gcc -fsanitize=address -o $(NAME) $(SRCO) $(LIBFT) -I ../MinilibX/includes/mlx.h -g MinilibX/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
+	@gcc -g -o $(NAME) $(SRCO) $(LIBFT) -I ../MinilibX/includes/mlx.h -g MinilibX/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
 
-mac: $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
+mac : $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
 	@echo "$(YEL)Made $(NAME)$(END)"
 	@echo "$(PUR)Compiling$(END)"
-	@gcc -fsanitize=address -I ../MinilibX/mlx.h -g -L ./MinilibX/. -framework OpenGL -framework AppKit -I includes -I libft/includes $(LIBFT) $(SRCO) -o $(NAME)
+	# @gcc -fsanitize=address -I ../MinilibX/mlx.h -g -L ./MinilibX/. -framework OpenGL -framework AppKit -I includes -I libft/includes $(LIBFT) $(SRCO) -o $(NAME)
+	@gcc -fsanitize=address -o $(NAME) $(SRCO) $(LIBFT) -I ../MinilibX/includes/mlx.h -g MinilibX/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
 
 $(LIBFT) : $(LIBFT_INCLUDE)
 	@make -C ./libft/

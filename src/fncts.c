@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 11:23:56 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 12:27:54 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,13 @@ char		*get_map(data_t *data, char *line)
 			ret = get_next_line(data->fd, &line);
 		if (!(data->test = ft_calloc(data->Map.MaxWidth + 1, sizeof(char))))
 			return ("A malloc derped\n");
-		if ((data->Error = get_map_heart(data, line)) != 0)
-			return (data->Error);
 		data->map[data->Config.l] = data->test;
+		if ((data->Error = get_map_heart(data, line)) != 0)
+		{
+			free(line);
+			*line = 0;
+			return (data->Error);
+		}
 		data->Config.l++;
 		free(line);
 		*line = 0;

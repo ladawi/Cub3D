@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 09:51:54 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 14:42:18 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ char		*ft_screenshot(data_t *data)
 	write(fdscreen, header, 54);
 	write(fdscreen, file, 4 * data->res_height * data->res_width);
 	close(fdscreen);
-	if (file)
+	if (*file)
 	{
 		free(file);
-		file = 0;
+		*file = 0;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 12:02:39 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:36:47 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void		initdata_game(data_t *data)
 {
 	data->game.PrevPos = '0';
-	data->game.fPlayerX = 0;
-	data->game.fPlayerY = 0;
-	data->game.fRotaLeft = 0;
-	data->game.fRotaRight = 0;
-	data->game.fVbackward = 0;
-	data->game.fVforward = 0;
-	data->game.fStrafeLeft = 0;
-	data->game.fStrafeRight = 0;
+	data->game.fplayerx = 0;
+	data->game.fplayery = 0;
+	data->game.frotaleft = 0;
+	data->game.frotaright = 0;
+	data->game.fvbackward = 0;
+	data->game.fvforward = 0;
+	data->game.fstrafeleft = 0;
+	data->game.fstraferight = 0;
 	data->game.dDirX = -1;
 	data->game.dDirY = 0;
 	data->game.dPlaneX = 0;
@@ -37,6 +37,7 @@ char		*initdata(data_t *data, texture_t *textures, char *pathconfig)
 	data->idparsing = 0;
 	data->max_res_width = 0;
 	data->max_res_height = 0;
+	data->mlx_win = 0;
 	mlx_get_screen_size(data->mlx_ptr,
 		&data->max_res_width, &data->max_res_height);
 	data->fd = open(pathconfig, O_RDONLY);

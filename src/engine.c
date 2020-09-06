@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:30:07 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:37:40 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void		checkraydir(data_t *data)
 	if (data->ray.raydirx < 0)
 	{
 		data->ray.stepx = -1;
-		data->ray.sidedistx = (data->game.fPlayerX - data->ray.mapx)
+		data->ray.sidedistx = (data->game.fplayerx - data->ray.mapx)
 			* data->ray.deltadistx;
 	}
 	else
 	{
 		data->ray.stepx = 1;
-		data->ray.sidedistx = (data->ray.mapx + 1.0 - data->game.fPlayerX)
+		data->ray.sidedistx = (data->ray.mapx + 1.0 - data->game.fplayerx)
 			* data->ray.deltadistx;
 	}
 	if (data->ray.raydiry < 0)
 	{
 		data->ray.stepy = -1;
-		data->ray.sidedisty = (data->game.fPlayerY - data->ray.mapy)
+		data->ray.sidedisty = (data->game.fplayery - data->ray.mapy)
 			* data->ray.deltadisty;
 	}
 	else
 	{
 		data->ray.stepy = 1;
-		data->ray.sidedisty = (data->ray.mapy + 1.0 - data->game.fPlayerY)
+		data->ray.sidedisty = (data->ray.mapy + 1.0 - data->game.fplayery)
 			* data->ray.deltadisty;
 	}
 }
@@ -48,8 +48,8 @@ void		gameloop2(data_t *data, int x)
 		* data->ray.camerax;
 	data->ray.raydiry = data->game.dDirY + data->game.dPlaneY
 		* data->ray.camerax;
-	data->ray.mapx = (int)(data->game.fPlayerX);
-	data->ray.mapy = (int)(data->game.fPlayerY);
+	data->ray.mapx = (int)(data->game.fplayerx);
+	data->ray.mapy = (int)(data->game.fplayery);
 	data->ray.deltadistx = fabs(1 / data->ray.raydirx);
 	data->ray.deltadisty = fabs(1 / data->ray.raydiry);
 	data->ray.hit = 0;
@@ -78,10 +78,10 @@ void		gameloop3(data_t *data)
 			data->ray.hit = 2;
 	}
 	if (data->ray.side == 0)
-		data->ray.perpwalldist = ((data->ray.mapx - data->game.fPlayerX
+		data->ray.perpwalldist = ((data->ray.mapx - data->game.fplayerx
 			+ (1 - data->ray.stepx) / 2)) / data->ray.raydirx;
 	else
-		data->ray.perpwalldist = ((data->ray.mapy - data->game.fPlayerY
+		data->ray.perpwalldist = ((data->ray.mapy - data->game.fplayery
 			+ (1 - data->ray.stepy) / 2)) / data->ray.raydiry;
 }
 

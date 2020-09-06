@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 11:47:37 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:39:43 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,16 @@
 
 typedef struct	game_s
 {
-	float	fPlayerX;
-	float	fPlayerY;
-	float	fDepth;
-	float	fRotaLeft;
-	float	fRotaRight;
-	float	fVforward;
-	float	fVbackward;
-	float	fStrafeLeft;
-	float	fStrafeRight;
-	char	bHitWall;
-	int		nMapWidth;
-	int		nMapHeight;
+	float	fplayerx;
+	float	fplayery;
+	float	frotaleft;
+	float	frotaright;
+	float	fvforward;
+	float	fvbackward;
+	float	fstrafeleft;
+	float	fstraferight;
+	int		nmapwidth;
+	int		nmapheight;
 	double	dDirX;
 	double	dDirY;
 	double	dPlaneX;
@@ -236,6 +234,12 @@ typedef struct header_s
 	int			res;
 }				header_t;
 
+typedef struct	Color_s
+{
+	unsigned int tab[3];
+}				Color_t;
+
+
 typedef struct	data_s
 {
     void		*mlx_ptr;
@@ -267,6 +271,7 @@ typedef struct	data_s
 	Var_t		Var;
 	Sdata_t		Sdata;
 	ray_t		ray;
+	Color_t		color;
 }                 data_t;
 
 char		*initgame(data_t *data, texture_t *textures);

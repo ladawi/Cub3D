@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:36:47 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void		spritecalc(data_t *data)
 {
 	data->Sdata.fix = 0;
 	data->Sdata.spriteX = data->Sprites.SpritesPos
-		[data->Sdata.spriteOrder[data->Var.u]].x - data->game.fPlayerX;
+		[data->Sdata.spriteOrder[data->Var.u]].x - data->game.fplayerx;
 	data->Sdata.spriteY = data->Sprites.SpritesPos
-		[data->Sdata.spriteOrder[data->Var.u]].y - data->game.fPlayerY;
+		[data->Sdata.spriteOrder[data->Var.u]].y - data->game.fplayery;
 	data->Sdata.invDet = 1.0 / (data->game.dPlaneX * data->game.dDirY
 		- data->game.dDirX * data->game.dPlaneY);
 	data->Sdata.transformX = data->Sdata.invDet * (data->game.dDirY
@@ -107,3 +107,7 @@ char		*drawsprites(data_t *data, double *zbuffer)
 	}
 	return (0);
 }
+
+
+/* Quand taille d'une ligne rempli de " " < pos max x de
+	spirte le plus long de (0,y) -> sprites ne s'affiche pas */

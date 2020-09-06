@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 14:30:38 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:24:32 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,17 @@ char		*ft_spritesorting(data_t *data)
 	while (++data->Var.i < data->Sprites.numSprites)
 	{
 		data->Sdata.spriteOrder[data->Var.i] = data->Var.i;
-		data->Sdata.spriteDistance[data->Var.i] = (data->game.fPlayerX
+		data->Sdata.spriteDistance[data->Var.i] = (data->game.fplayerx
 			- data->Sprites.SpritesPos[data->Var.i].x)
-			* (data->game.fPlayerX - data->Sprites.SpritesPos[data->Var.i].x)
-				+ (data->game.fPlayerY -
+			* (data->game.fplayerx - data->Sprites.SpritesPos[data->Var.i].x)
+				+ (data->game.fplayery -
 					data->Sprites.SpritesPos[data->Var.i].y) *
-						(data->game.fPlayerY -
+						(data->game.fplayery -
 							data->Sprites.SpritesPos[data->Var.i].y);
 	}
 	spritesorting2(data, data->Sdata.spriteOrder,
 		data->Sdata.spriteDistance, data->Sprites.numSprites);
 	tofree = data->Sdata.spriteDistance;
-	if (tofree)
-	{
-		free(tofree);
-		tofree = NULL;
-	}
+	free(tofree);
 	return (0);
 }
