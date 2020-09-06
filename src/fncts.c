@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 12:27:54 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:13:32 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ char		*check_map(data_t *data)
 	i = 0;
 	p = -1;
 	u = -1;
-	while (++p < data->Map.MaxHeight && !data->Error)
+	while (++p < data->Map.MaxHeight && !data->error)
 	{
-		while (++u < data->Map.MaxWidth && !data->Error)
+		while (++u < data->Map.MaxWidth && !data->error)
 		{
-			data->Error = check_map2(data, p, u, i);
-			data->Error = check_map3(data, p, u, i);
+			data->error = check_map2(data, p, u, i);
+			data->error = check_map3(data, p, u, i);
 			i = 0;
 		}
 		u = -1;
 	}
-	return (data->Error);
+	return (data->error);
 }
 
 char		*check_map_2(data_t *data)
@@ -70,14 +70,14 @@ char		*get_map_heart(data_t *data, char *line)
 	i = 0;
 	if (data->Config.y >= data->Map.MaxWidth
 		|| data->Config.l >= data->Map.MaxHeight)
-		return ("Error Map");
+		return ("error Map");
 	while (line[i] != 0 && line != 0)
 	{
 		get_map_heart_2(data, line, i);
 		data->Config.y++;
 		i++;
 	}
-	data->test[data->Config.y] = 0;
+	data->str[data->Config.y] = 0;
 	return (0);
 }
 
@@ -120,14 +120,14 @@ char		*get_map(data_t *data, char *line)
 		data->Config.y = 0;
 		if (data->Config.l != 0)
 			ret = get_next_line(data->fd, &line);
-		if (!(data->test = ft_calloc(data->Map.MaxWidth + 1, sizeof(char))))
+		if (!(data->str = ft_calloc(data->Map.MaxWidth + 1, sizeof(char))))
 			return ("A malloc derped\n");
-		data->map[data->Config.l] = data->test;
-		if ((data->Error = get_map_heart(data, line)) != 0)
+		data->map[data->Config.l] = data->str;
+		if ((data->error = get_map_heart(data, line)) != 0)
 		{
 			free(line);
 			*line = 0;
-			return (data->Error);
+			return (data->error);
 		}
 		data->Config.l++;
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:51:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 13:54:55 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:12:07 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ char		*get_color3(data_t *data, char *line)
 	data->color.tab[0] = data->color.tab[0] << 16;
 	data->color.tab[1] = data->color.tab[1] << 8;
 	if (ft_strnstr(data->idparsing, "F", 0) != 0)
-		data->F_color = data->color.tab[0] + data->color.tab[1]
+		data->f_color = data->color.tab[0] + data->color.tab[1]
 			+ data->color.tab[2];
 	else if (ft_strnstr(data->idparsing, "C", 0) != 0)
-		data->C_color = data->color.tab[0] + data->color.tab[1]
+		data->c_color = data->color.tab[0] + data->color.tab[1]
 			+ data->color.tab[2];
 	return (0);
 }
@@ -77,7 +77,7 @@ char		*get_color(data_t *data, char *line)
 		return ("Wrong color input");
 	line++;
 	data->color.tab[1] = atoi(line);
-	data->Error = get_color2(data, line);
-	data->Error = get_color3(data, line);
-	return (data->Error);
+	data->error = get_color2(data, line);
+	data->error = get_color3(data, line);
+	return (data->error);
 }

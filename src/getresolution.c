@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:20:49 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ char			*get_resolutiom_check(data_t *data, char *line)
 	if (data->res_height <= 0 || data->res_width <= 0)
 	{
 		printf("muk\n");
-		data->Error = "wrong res";
+		data->error = "wrong res";
 	}
 	if (data->res_width > data->max_res_width)
 		data->res_width = data->max_res_width;
 	if (data->res_height > data->max_res_height)
 		data->res_height = data->max_res_height;
 	if (*line != 0)
-		data->Error = "wrong res";
-	return (data->Error);
+		data->error = "wrong res";
+	return (data->error);
 }
 
 char			*all_c_ok(data_t *data, char *line)
@@ -36,10 +36,10 @@ char			*all_c_ok(data_t *data, char *line)
 	while (line[i])
 	{
 		if (ft_isdigit(line[i]) != 1 && line[i] != ' ' && line[i] != '\n')
-			data->Error = "Wrong Carac in Res";
+			data->error = "Wrong Carac in Res";
 		i++;
 	}
-	return (data->Error);
+	return (data->error);
 }
 
 char			*set_res(data_t *data, char *line, int nb)
@@ -67,7 +67,7 @@ char			*set_res(data_t *data, char *line, int nb)
 				data->res_height = ft_atoi(line);
 		}
 	}
-	return (data->Error);
+	return (data->error);
 }
 
 char			*get_resolution(data_t *data, char *line)
@@ -77,8 +77,8 @@ char			*get_resolution(data_t *data, char *line)
 	i = 0;
 	while (ft_findchar(line[i], "R 0") != 0)
 		line++;
-	if ((data->Error = all_c_ok(data, line)) != 0)
-		return (data->Error);
+	if ((data->error = all_c_ok(data, line)) != 0)
+		return (data->error);
 	i = 0;
 	set_res(data, line, 0);
 	i = 0;

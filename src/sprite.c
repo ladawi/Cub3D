@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 16:36:47 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:08:54 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void		spritecalc(data_t *data)
 		[data->Sdata.spriteOrder[data->Var.u]].x - data->game.fplayerx;
 	data->Sdata.spriteY = data->Sprites.SpritesPos
 		[data->Sdata.spriteOrder[data->Var.u]].y - data->game.fplayery;
-	data->Sdata.invDet = 1.0 / (data->game.dPlaneX * data->game.dDirY
-		- data->game.dDirX * data->game.dPlaneY);
-	data->Sdata.transformX = data->Sdata.invDet * (data->game.dDirY
-		* data->Sdata.spriteX - data->game.dDirX * data->Sdata.spriteY);
-	data->Sdata.transformY = data->Sdata.invDet * (-data->game.dPlaneY
-		* data->Sdata.spriteX + data->game.dPlaneX * data->Sdata.spriteY);
+	data->Sdata.invDet = 1.0 / (data->game.dplanex * data->game.ddiry
+		- data->game.ddirx * data->game.dplaney);
+	data->Sdata.transformX = data->Sdata.invDet * (data->game.ddiry
+		* data->Sdata.spriteX - data->game.ddirx * data->Sdata.spriteY);
+	data->Sdata.transformY = data->Sdata.invDet * (-data->game.dplaney
+		* data->Sdata.spriteX + data->game.dplanex * data->Sdata.spriteY);
 	data->Sdata.spriteScreenX = (int)((data->res_width / 2)
 		* (1 + data->Sdata.transformX / data->Sdata.transformY));
 	data->Sdata.vMoveScreen = (int)(VMOVE / data->Sdata.transformY);
@@ -60,7 +60,7 @@ void		drawsprites2(data_t *data, unsigned int color, double *zbuffer)
 	{
 		data->Sdata.texX = (int)(256 * (data->Sdata.stripe -
 			(-data->Sdata.spriteWidth / 2 + data->Sdata.spriteScreenX))
-				* data->tex.S_x / data->Sdata.spriteWidth) / 256;
+				* data->tex.s_x / data->Sdata.spriteWidth) / 256;
 		data->Var.h = data->Sdata.drawStartY;
 		if (data->Sdata.transformY > 0 && data->Sdata.stripe > 0 &&
 			data->Sdata.stripe < data->res_width && data->Sdata.transformY <
@@ -70,9 +70,9 @@ void		drawsprites2(data_t *data, unsigned int color, double *zbuffer)
 			{
 				data->Var.d = (data->Var.h - data->Sdata.vMoveScreen) * 256 -
 					data->res_height * 128 + data->Sdata.SpriteHeight * 128;
-				data->Sdata.texY = ((data->Var.d * data->tex.S_y) /
+				data->Sdata.texY = ((data->Var.d * data->tex.s_y) /
 					data->Sdata.SpriteHeight) / 256;
-				color = data->tex.Sprite.str[data->tex.S_x
+				color = data->tex.sprite.str[data->tex.s_x
 					* data->Sdata.texY + data->Sdata.texX];
 				if ((color & 0x00FFFFFF) != 0)
 					data->sImg.str[(data->res_width - data->Sdata.stripe

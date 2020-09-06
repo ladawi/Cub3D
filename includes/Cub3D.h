@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 16:39:43 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:13:28 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define KEY_ESC		65307
 
 
-# define NBTEXTURES		9
+# define NBTEXTURES		6
 # define M_2PI			6.28318530718
 
 # define UDIV  1
@@ -76,11 +76,11 @@ typedef struct	game_s
 	float	fstraferight;
 	int		nmapwidth;
 	int		nmapheight;
-	double	dDirX;
-	double	dDirY;
-	double	dPlaneX;
-	double	dPlaneY;
-	char	PrevPos;
+	double	ddirx;
+	double	ddiry;
+	double	dplanex;
+	double	dplaney;
+	char	prevpos;
 }				game_t;
 
 typedef struct	pos_s
@@ -113,11 +113,11 @@ typedef struct tex_s
 
 typedef struct	textures_s
 {
-	tex_t		TEX[NBTEXTURES];
+	tex_t		tex[NBTEXTURES];
 	
-	image_t		Sprite;
-	int			S_x;
-	int			S_y;
+	image_t		sprite;
+	int			s_x;
+	int			s_y;
 }				texture_t;
 
 typedef struct Sprit_s
@@ -251,10 +251,10 @@ typedef struct	data_s
 	int			max_res_width;
 	int			max_res_height;
 	char		*idparsing;
-	char		*Error;
-	int			F_color;
-	int			C_color;
-	char		*test;
+	char		*error;
+	int			f_color;
+	int			c_color;
+	char		*str;
 	char		**map;
 	int			*image;
 	int			sizeline;

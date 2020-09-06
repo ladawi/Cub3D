@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:49:24 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 16:14:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int			check_arg(char *str)
 
 void		print_err_and_exit(data_t *data)
 {
-	if (data->Error != 0)
+	if (data->error != 0)
 	{
-		ft_putendl_fd("Error :", 0);
-		ft_putendl_fd(data->Error, 0);
+		ft_putendl_fd("error :", 0);
+		ft_putendl_fd(data->error, 0);
 		exit(1);
 	}
 }
@@ -35,7 +35,7 @@ void		run_game(data_t *data)
 	if (!(data->mlx_win = mlx_new_window(data->mlx_ptr, data->res_width,
 		data->res_height, "Cub3D")))
 	{
-		data->Error = "mlx_new_window failed";
+		data->error = "mlx_new_window failed";
 		print_err_and_exit(data);
 	}
 	data->sImg.img = mlx_new_image(data->mlx_ptr,
@@ -73,21 +73,21 @@ int			main(int ac, char **av)
 	{
 		if ((ac == 3) && check_arg(av[2]) != 0)
 		{
-			data.Error = "Wrong argument";
+			data.error = "Wrong argument";
 			print_err_and_exit(&data);
 		}
 		if (!(data.mlx_ptr = mlx_init()))
 		{
-			data.Error = "mlx.init failed";
+			data.error = "mlx.init failed";
 			print_err_and_exit(&data);
 		}
-		if (data.Error = initdata(&data, &data.tex, av[1]))
+		if (data.error = initdata(&data, &data.tex, av[1]))
 			print_err_and_exit(&data);
-		if ((data.Error = initgame(&data, &data.tex)) != NULL)
+		if ((data.error = initgame(&data, &data.tex)) != NULL)
 			print_err_and_exit(&data);
 		(ac == 2) ? run_game(&data) : take_screenshot(&data);
 	}
 	else
-		ft_putendl_fd("Error : \nWrong nb of arguments", 0);
+		ft_putendl_fd("error : \nWrong nb of arguments", 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 18:01:45 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 11:43:13 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char		*initgame(data_t *data, texture_t *textures)
 	char	*lineconfig;
 	char	*tofree;
 
-	while (get_next_line(data->fd, &lineconfig) > 0 && data->Error == NULL)
+	while (get_next_line(data->fd, &lineconfig) > 0 && data->error == NULL)
 	{
 		get_next_line(data->fd2, &data->line2);
 		setid(data, lineconfig);
@@ -42,7 +42,7 @@ char		*initgame(data_t *data, texture_t *textures)
 		free(data->idparsing);
 	}
 	free(lineconfig);
-	if ((data->Config.y == 0 && data->Config.l == 0) && data->Error == 0)
-		data->Error = "No map";
-	return (data->Error);
+	if ((data->Config.y == 0 && data->Config.l == 0) && data->error == 0)
+		data->error = "No map";
+	return (data->error);
 }

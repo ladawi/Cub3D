@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 16:36:47 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:11:15 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		initdata_game(data_t *data)
 {
-	data->game.PrevPos = '0';
+	data->game.prevpos = '0';
 	data->game.fplayerx = 0;
 	data->game.fplayery = 0;
 	data->game.frotaleft = 0;
@@ -23,15 +23,15 @@ void		initdata_game(data_t *data)
 	data->game.fvforward = 0;
 	data->game.fstrafeleft = 0;
 	data->game.fstraferight = 0;
-	data->game.dDirX = -1;
-	data->game.dDirY = 0;
-	data->game.dPlaneX = 0;
-	data->game.dPlaneY = 0.66;
+	data->game.ddirx = -1;
+	data->game.ddiry = 0;
+	data->game.dplanex = 0;
+	data->game.dplaney = 0.66;
 }
 
 char		*initdata(data_t *data, texture_t *textures, char *pathconfig)
 {
-	data->Error = 0;
+	data->error = 0;
 	data->res_width = -1;
 	data->res_height = -1;
 	data->idparsing = 0;

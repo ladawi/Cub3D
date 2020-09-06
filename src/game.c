@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:54:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 16:27:07 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:03:10 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void		ft_putpixel(data_t *data, int side, int x, int y)
 {
 	data->ray.texy = (y - data->ray.drawstart)
-		* data->tex.TEX[side].height / data->ray.lineheight;
-	data->ray.color = data->tex.TEX[side].str[data->tex.TEX[side].height
+		* data->tex.tex[side].height / data->ray.lineheight;
+	data->ray.color = data->tex.tex[side].str[data->tex.tex[side].height
 		* data->ray.texy + data->ray.texx];
 	data->sImg.str[x + (data->sImg.size_line * y)] = data->ray.color;
 }

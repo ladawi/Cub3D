@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:30:07 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 16:37:40 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:12:07 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void		gameloop2(data_t *data, int x)
 {
 	data->ray.camerax = 2 * (data->res_width - 1 - x)
 		/ (double)(data->res_width) - 1;
-	data->ray.raydirx = data->game.dDirX + data->game.dPlaneX
+	data->ray.raydirx = data->game.ddirx + data->game.dplanex
 		* data->ray.camerax;
-	data->ray.raydiry = data->game.dDirY + data->game.dPlaneY
+	data->ray.raydiry = data->game.ddiry + data->game.dplaney
 		* data->ray.camerax;
 	data->ray.mapx = (int)(data->game.fplayerx);
 	data->ray.mapy = (int)(data->game.fplayery);
@@ -89,27 +89,27 @@ void		set_tex(data_t *data)
 {
 	if (data->ray.side == 0 && data->ray.raydirx > 0)
 	{
-		data->ray.texx = data->tex.TEX[EAST].width - data->ray.texx - 1;
+		data->ray.texx = data->tex.tex[EAST].width - data->ray.texx - 1;
 		data->ray.texx = (int)(data->ray.wallx
-			* (double)(data->tex.TEX[EAST].width));
+			* (double)(data->tex.tex[EAST].width));
 	}
 	else if (data->ray.side == 0 && data->ray.raydirx < 0)
 	{
-		data->ray.texx = data->tex.TEX[WEST].width - data->ray.texx - 1;
+		data->ray.texx = data->tex.tex[WEST].width - data->ray.texx - 1;
 		data->ray.texx = (int)(data->ray.wallx
-			* (double)(data->tex.TEX[WEST].width));
+			* (double)(data->tex.tex[WEST].width));
 	}
 	else if (data->ray.side == 1 && data->ray.raydiry < 0)
 	{
-		data->ray.texx = data->tex.TEX[1].width - data->ray.texx - 1;
+		data->ray.texx = data->tex.tex[NORTH].width - data->ray.texx - 1;
 		data->ray.texx = (int)(data->ray.wallx
-			* (double)(data->tex.TEX[1].width));
+			* (double)(data->tex.tex[NORTH].width));
 	}
 	else if (data->ray.side == 1 && data->ray.raydiry > 0)
 	{
-		data->ray.texx = data->tex.TEX[SOUTH].width - data->ray.texx - 1;
+		data->ray.texx = data->tex.tex[SOUTH].width - data->ray.texx - 1;
 		data->ray.texx = (int)(data->ray.wallx
-			* (double)(data->tex.TEX[SOUTH].width));
+			* (double)(data->tex.tex[SOUTH].width));
 	}
 }
 
@@ -121,7 +121,7 @@ void		draw_column(data_t *data, int x)
 	while (++y < data->res_height)
 	{
 		if (y <= data->ray.drawstart)
-			data->sImg.str[x + (data->sImg.size_line * y)] = data->C_color;
+			data->sImg.str[x + (data->sImg.size_line * y)] = data->c_color;
 		else if (y > data->ray.drawstart && y < data->ray.drawend)
 		{
 			if (data->ray.hit == 1 && data->ray.raydirx > 0 && !data->ray.side)
@@ -134,6 +134,6 @@ void		draw_column(data_t *data, int x)
 				ft_putpixel(data, NORTH, x, y);
 		}
 		else if (y >= data->ray.drawend)
-			data->sImg.str[x + (data->sImg.size_line * y)] = data->F_color;
+			data->sImg.str[x + (data->sImg.size_line * y)] = data->f_color;
 	}
 }
