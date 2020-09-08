@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:30:07 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3D.h"
+#include "../includes/cub3d.h"
 
 void		checkraydir(t_data *data)
 {

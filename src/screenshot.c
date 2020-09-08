@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 09:51:54 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:45:28 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3D.h"
+#include "../includes/cub3d.h"
 
 void		init_head(t_data *data, t_header *head)
 {

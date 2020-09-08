@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 18:01:45 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:43:57 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3D.h"
+#include "../includes/cub3d.h"
 
 int			setid(t_data *data, char *str)
 {

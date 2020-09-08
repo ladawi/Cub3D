@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:53:44 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3D.h"
+#include "../includes/cub3d.h"
 
 char		*check_map(t_data *data)
 {
@@ -21,9 +21,9 @@ char		*check_map(t_data *data)
 	i = 0;
 	p = -1;
 	u = -1;
-	while (++p < data->mapcarac.maxheight && !data->error)
+	while (++p < data->mapcarac.maxheight)
 	{
-		while (++u < data->mapcarac.maxwidth && !data->error)
+		while (++u < data->mapcarac.maxwidth)
 		{
 			data->error = check_map2(data, p, u, i);
 			data->error = check_map3(data, p, u, i);

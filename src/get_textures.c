@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:16:42 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:43:35 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3D.h"
+#include "../includes/cub3d.h"
 
 char		*get_texture_wall(t_data *data, char *line, int nb)
 {

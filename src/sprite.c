@@ -6,11 +6,11 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/06 17:49:04 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cub3D.h"
+#include "../includes/cub3d.h"
 
 void		spritecalc(t_data *data)
 {
@@ -107,7 +107,3 @@ char		*drawsprites(t_data *data, double *zbuffer)
 	}
 	return (0);
 }
-
-
-/* Quand taille d'une ligne rempli de " " < pos max x de
-	spirte le plus long de (0,y) -> sprites ne s'affiche pas */
