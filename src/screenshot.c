@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 09:51:54 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 16:06:29 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char		*ft_screenshot(t_data *data)
 	int		fdscreen;
 	char	*file;
 	char	header[54];
-	char	*tofree;
 
 	fdscreen = open("./screenshot/Cub3d screen.bmp", O_CREAT | O_WRONLY, 0666);
 	create_header(data, &header[0]);

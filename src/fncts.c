@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 14:28:33 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 15:57:53 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char		*get_map_heart_3(t_data *data, char *line, int i)
 	data->game.fplayery = data->config.l + 0.5;
 	data->player.x = i;
 	data->player.y = data->config.l;
+	return (data->error);
 }
 
 char		*get_map_heart_2(t_data *data, char *line, int i)
@@ -66,7 +67,7 @@ char		*get_map_heart(t_data *data, char *line)
 	return (data->error);
 }
 
-char		*get_specs_map(t_data *data, char *line)
+char		*get_specs_map(t_data *data)
 {
 	int		ret;
 	char	*tofree;
@@ -80,8 +81,8 @@ char		*get_specs_map(t_data *data, char *line)
 	{
 		tofree = data->line2;
 		ret = get_next_line(data->fd2, &data->line2);
-		data->mapcarac.maxwidth = (ft_strlen(data->line2)
-			> data->mapcarac.maxwidth) ? ft_strlen(data->line2)
+		data->mapcarac.maxwidth = ((int)(ft_strlen(data->line2))
+			> data->mapcarac.maxwidth) ? (int)(ft_strlen(data->line2))
 				: data->mapcarac.maxwidth;
 		data->mapcarac.maxheight++;
 		if (tofree)

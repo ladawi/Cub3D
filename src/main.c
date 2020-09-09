@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:49:24 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 16:11:54 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int			main(int ac, char **av)
 			data.error = "mlx.init failed";
 			print_err_and_exit(&data);
 		}
-		if (data.error = initdata(&data, &data.tex, av[1]))
+		if ((data.error = initdata(&data, av[1])))
 			print_err_and_exit(&data);
-		if ((data.error = initgame(&data, &data.tex)) != NULL)
+		if ((data.error = initgame(&data)) != NULL)
 			print_err_and_exit(&data);
 		(ac == 2) ? run_game(&data) : take_screenshot(&data);
 	}

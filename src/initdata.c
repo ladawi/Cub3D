@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 15:55:19 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		initdata_game(t_data *data)
 	data->game.dplaney = 0.66;
 }
 
-char		*initdata(t_data *data, t_texture *textures, char *pathconfig)
+char		*initdata(t_data *data, char *pathconfig)
 {
 	data->error = 0;
 	data->res_width = -1;

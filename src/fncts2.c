@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:29 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 14:28:42 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 16:15:10 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char		*check_map(t_data *data)
 	{
 		while (++u < data->mapcarac.maxwidth)
 		{
-			data->error = check_map2(data, p, u, i);
-			data->error = check_map3(data, p, u, i);
+			data->error = check_map2(data, p, u);
+			data->error = check_map3(data, u, i);
 			i = 0;
 		}
 		u = -1;
@@ -101,7 +101,7 @@ char		*get_map(t_data *data, char *line)
 	int		ret;
 
 	ret = -1;
-	get_specs_map(data, line);
+	get_specs_map(data);
 	if (!(data->map = ft_calloc(data->mapcarac.maxheight + 1, sizeof(char *))))
 		return ("A malloc derped\n");
 	while (ret != 0)

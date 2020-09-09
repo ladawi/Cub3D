@@ -6,13 +6,13 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 19:10:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 11:41:33 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 15:54:38 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char			*parsing(t_data *data, t_texture *textures, char *line)
+char			*parsing(t_data *data, char *line)
 {
 	if (ft_strnstr(data->idparsing, "R", 0) != 0)
 		data->error = get_resolution(data, line);

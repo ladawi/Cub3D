@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 15:58:43 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ char		*drawsprites(t_data *data, double *zbuffer)
 	data->var.i = -1;
 	data->var.h = -1;
 	data->var.d = 0;
+	color = 0;
 	ft_spritesorting(data);
 	while (++data->var.u < data->sprites.numsprites)
 	{

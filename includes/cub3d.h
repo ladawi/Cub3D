@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 14:29:11 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 16:10:41 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,9 +270,9 @@ typedef struct	s_data
 	t_pos		player;
 }				t_data;
 
-char			*initgame(t_data *data, t_texture *textures);
-char			*initdata(t_data *data, t_texture *textures, char *pathconfig);
-char			*parsing(t_data *data, t_texture *textures, char *line);
+char			*initgame(t_data *data);
+char			*initdata(t_data *data, char *pathconfig);
+char			*parsing(t_data *data, char *line);
 char			*get_resolution(t_data *data, char *line);
 char			*get_texture_wall(t_data *data, char *line, int nb);
 char			*get_sprite_texture(t_data *data, char *line);
@@ -282,10 +282,10 @@ void			ft_rotate_player(t_data *data, double angle);
 char			*get_map_2(t_data *data);
 char			*get_map_3(t_data *data, char *line);
 char			*drawsprites(t_data *data, double *zbuffer);
-char			*get_specs_map(t_data *data, char *line);
+char			*get_specs_map(t_data *data);
 char			*check_spawn(t_data *data);
-char			*check_map2(t_data *data, int p, int u, int i);
-char			*check_map3(t_data *data, int p, int u, int i);
+char			*check_map2(t_data *data, int p, int u);
+char			*check_map3(t_data *data, int u, int i);
 char			*check_map(t_data *data);
 char			*check_map_2(t_data *data);
 char			*get_map(t_data *data, char *line);

@@ -6,11 +6,11 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/09/09 15:23:25 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/09 16:17:42 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3D.out
+NAME = Cub3D
 
 SRC_LIST=\
 	main.c\
@@ -73,30 +73,25 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT) $(MINILIBX)
 	@echo "$(YEL)Made $(NAME)$(END)"
 	@echo "$(PUR)Compiling$(END)"
-	@gcc -fsanitize=address -o $(NAME) $(SRCO) $(LIBFT) -I ../minilibx-linux/mlx.h -g minilibx-linux/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
-
-valgrind : $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
-	@echo "$(YEL)Made $(NAME)$(END)"
-	@echo "$(PUR)Compiling$(END)"
-	# @gcc -fsanitize=address -I ../MinilibX/mlx.h -g -L ./MinilibX/. -framework OpenGL -framework AppKit -I includes -I libft/includes $(LIBFT) $(SRCO) -o $(NAME)
-	@gcc -g -o $(NAME) $(SRCO) $(LIBFT) -I ../MinilibX/includes/mlx.h -g MinilibX/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
+	@gcc $(FLAGS) -o $(NAME) $(SRCO) $(LIBFT) -I ../minilibx-linux/mlx.h -g minilibx-linux/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
 
 $(LIBFT) : $(LIBFT_INCLUDE)
 	@make -C ./libft/
 
 $(MINILIBX) :
-	@make -C ./minilibx-linux
+	@make -s -C ./minilibx-linux
 
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@gcc -g -c $< -I includes -I libft/includes -o $@
+	@gcc $(FLAGS) -g -c $< -I includes -I libft/includes -o $@
 	@echo "$(GRE)$<$(END)"
 
 clean:
 	@make clean -C libft
-	@echo "$(RED)$(BOLD)Made [clean] in libft$(END)"
+	@make clean -C minilibx-linux
+	@echo "$(RED)$(BOLD)Made [clean] in libft & minilibx$(END)"
 	@rm -rf $(OBJ_DIR)
 	@echo "$(RED)$(BOLD)Removed *.o $(END)"
 
@@ -104,15 +99,11 @@ re: fclean all
 
 fclean: clean
 	@make fclean -C libft
-	@make clean -C minilibx-linux
 	@echo "$(RED)$(BOLD)Made [fclean] in libft$(END)"
 	@rm -rf $(NAME)
 	@echo "$(RED)$(BOLD)Removed $(NAME) $(END)"
-	@rm -rf Cub3d.out
-	@rm -rf Cub3d.out.dSYM
+	@rm -rf Cub3D
 	@rm -rf ./screenshot/Cub3d\ screen.bmp
-	@echo "$(RED)$(BOLD)Removed *.out $(END)"
+	@echo "$(RED)$(BOLD)Removed Cub3D $(END)"
 
-run : all 
-	./Cub3d.out init.cub
-##/* ne pas oublier de mettre les flags */##
+.PHONY : all clean fclean all re
