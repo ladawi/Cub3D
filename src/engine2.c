@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:38:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 13:13:16 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char		*check_map2(t_data *data, int p, int u, int i)
 
 char		*check_map3(t_data *data, int p, int u, int i)
 {
-	while (ft_findchar(data->map[0 + i][u], " 02") != 0
+	while (ft_findchar(data->map[0 + i][u], " 02NSEW") != 0
 				&& u < ft_strlen(data->map[0]) && u > 1)
 	{
 		if (ft_findchar(data->map[0 + i][u - 1], "1 ") != 0
@@ -58,9 +58,9 @@ char		*check_map3(t_data *data, int p, int u, int i)
 			return ("error : map is not closed");
 	}
 	i = 0;
-	while (ft_findchar(data->map[data->mapcarac.maxheight - 1 - i][u], " 02")
-		!= 0 && u < ft_strlen(data->map[data->mapcarac.maxheight - 1])
-			&& u > 1)
+	while (ft_findchar(data->map[data->mapcarac.maxheight - 1 - i][u],
+		" 02NSEW") != 0 && u <
+			ft_strlen(data->map[data->mapcarac.maxheight - 1]) && u > 1)
 	{
 		if (ft_findchar(data->map[data->mapcarac.maxheight - 1 - i][u - 1]
 			, "1 ") != 0 && ft_findchar(data->map

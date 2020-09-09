@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 13:23:57 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char		*check_map(t_data *data)
 		}
 		u = -1;
 	}
+	if (data->error == 0)
+		data->error = check_spawn(data);
 	return (data->error);
 }
 
@@ -73,12 +75,12 @@ char		*get_map_heart(t_data *data, char *line)
 		return ("error mapcarac");
 	while (line[i] != 0 && line != 0)
 	{
-		get_map_heart_2(data, line, i);
+		data->error = get_map_heart_2(data, line, i);
 		data->config.y++;
 		i++;
 	}
 	data->str[data->config.y] = 0;
-	return (0);
+	return (data->error);
 }
 
 char		*get_specs_map(t_data *data, char *line)
@@ -124,15 +126,8 @@ char		*get_map(t_data *data, char *line)
 		if (!(data->str = ft_calloc(data->mapcarac.maxwidth + 1, sizeof(char))))
 			return ("A malloc derped\n");
 		data->map[data->config.l] = data->str;
-		if ((data->error = get_map_heart(data, line)) != 0)
-		{
-			free(line);
-			*line = 0;
-			return (data->error);
-		}
+		data->error = get_map_3(data, line);
 		data->config.l++;
-		free(line);
-		*line = 0;
 	}
 	return (get_map_2(data));
 }

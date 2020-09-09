@@ -6,7 +6,7 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/09/08 17:25:53 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/09 12:36:08 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC_LIST=\
 	engine.c\
 	engine2.c\
 	screenshot.c\
-	get_colors.c
+	get_colors.c\
+	recursive.c
 	
 SRCO = $(addprefix $(OBJ_DIR)/, $(SRC_LIST:%.c= %.o))
 
@@ -61,6 +62,12 @@ PUR = \033[0;95m
 BLU = \033[0;34m
 BOLD = \033[1m
 
+
+
+# return (check_wall() && check_wall() && chec_wall())
+# return (1)
+# return (0) si bout de chaine
+
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
@@ -68,7 +75,7 @@ $(NAME): $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
 	@echo "$(PUR)Compiling$(END)"
 	@gcc -fsanitize=address -o $(NAME) $(SRCO) $(LIBFT) -I ../MinilibX/includes/mlx.h -g MinilibX/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
 
-mac : $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
+valgrind : $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
 	@echo "$(YEL)Made $(NAME)$(END)"
 	@echo "$(PUR)Compiling$(END)"
 	# @gcc -fsanitize=address -I ../MinilibX/mlx.h -g -L ./MinilibX/. -framework OpenGL -framework AppKit -I includes -I libft/includes $(LIBFT) $(SRCO) -o $(NAME)
