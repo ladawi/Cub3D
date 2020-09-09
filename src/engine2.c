@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:38:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 13:13:16 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 13:44:39 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char		*check_map3(t_data *data, int p, int u, int i)
 			&& ft_findchar(data->map[0 + i][u + 1], "1 ") != 0)
 			i++;
 		else
-			return ("error : map is not closed");
+			return ("map is not closed");
 	}
 	i = 0;
 	while (ft_findchar(data->map[data->mapcarac.maxheight - 1 - i][u],
@@ -67,7 +67,7 @@ char		*check_map3(t_data *data, int p, int u, int i)
 				[data->mapcarac.maxheight - 1 - i][u + 1], "1 ") != 0)
 			i++;
 		else
-			return ("error : map is not closed");
+			return ("map is not closed");
 	}
 	return (0);
 }

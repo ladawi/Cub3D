@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:29 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 13:23:43 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 13:44:16 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char		*get_map_heart_2(t_data *data, char *line, int i)
 		data->str[data->config.y] = line[i];
 	}
 	else
-		data->error = "Wrong carac in map\n";
+		data->error = "Wrong carac in map";
 	return (data->error);
 }
 
@@ -52,9 +52,9 @@ char		*get_map_2(t_data *data)
 {
 	if (!(data->sprites.spritespos =
 		ft_calloc((data->sprites.numsprites + 1), sizeof(t_sprit))))
-		return ("a malloc derped\n");
+		return ("a malloc derped");
 	if (data->game.fplayerx == 0 && data->game.fplayery == 0)
-		return ("No spawn placed\n");
+		return ("No spawn placed");
 	data->game.nmapwidth = data->config.y;
 	data->game.nmapheight = data->config.l;
 	data->error = check_map(data);
