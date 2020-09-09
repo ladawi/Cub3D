@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 13:20:12 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 14:29:11 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,7 @@ void			ft_rotate_player(t_data *data, double angle);
 char			*get_map_2(t_data *data);
 char			*get_map_3(t_data *data, char *line);
 char			*drawsprites(t_data *data, double *zbuffer);
+char			*get_specs_map(t_data *data, char *line);
 char			*check_spawn(t_data *data);
 char			*check_map2(t_data *data, int p, int u, int i);
 char			*check_map3(t_data *data, int p, int u, int i);

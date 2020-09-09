@@ -6,63 +6,46 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 13:23:57 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/09 14:28:33 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char		*check_map(t_data *data)
+char		*get_map_heart_3(t_data *data, char *line, int i)
 {
-	int	p;
-	int u;
-	int i;
-
-	i = 0;
-	p = -1;
-	u = -1;
-	while (++p < data->mapcarac.maxheight)
-	{
-		while (++u < data->mapcarac.maxwidth)
-		{
-			data->error = check_map2(data, p, u, i);
-			data->error = check_map3(data, p, u, i);
-			i = 0;
-		}
-		u = -1;
-	}
-	if (data->error == 0)
-		data->error = check_spawn(data);
-	return (data->error);
+	if (ft_findchar(line[i], "N") != 0)
+		ft_rotate_player(data, M_PI_2);
+	if (ft_findchar(line[i], "E") != 0)
+		ft_rotate_player(data, M_PI);
+	if (ft_findchar(line[i], "S") != 0)
+		ft_rotate_player(data, M_PI_2 * 3);
+	data->game.fplayerx = i + 0.5;
+	data->game.fplayery = data->config.l + 0.5;
+	data->player.x = i;
+	data->player.y = data->config.l;
 }
 
-char		*check_map_2(t_data *data)
+char		*get_map_heart_2(t_data *data, char *line, int i)
 {
-	int	y;
-	int x;
-
-	y = -1;
-	while (++y < data->mapcarac.maxheight)
+	if (ft_findchar(line[i], "012NSEW ") != 0)
 	{
-		x = -1;
-		while (++x < data->mapcarac.maxwidth)
+		if (ft_findchar(line[i], "NSEW") != 0)
 		{
-			if (ft_findchar(data->map[y][x], "02") != 0)
+			if (data->game.fplayerx == 0 && data->game.fplayery == 0)
 			{
-				if (y > 0 && ft_findchar(data->map[y - 1][x], "012NSEW") == 0)
-					return ("Invalid mapcarac");
-				if (y < data->mapcarac.maxheight
-					&& ft_findchar(data->map[y + 1][x], "012NSEW") == 0)
-					return ("Invalid mapcarac");
-				if (x > 0 && ft_findchar(data->map[y][x - 1], "012NSEW") == 0)
-					return ("Invalid mapcarac");
-				if (x < data->mapcarac.maxwidth
-					&& ft_findchar(data->map[y][x + 1], "012NSEW") == 0)
-					return ("Invalid mapcarac");
+				get_map_heart_3(data, line, i);
 			}
+			else
+				return ("error to many spawn");
 		}
+		if (ft_findchar(line[i], "2") != 0)
+			data->sprites.numsprites++;
+		data->str[data->config.y] = line[i];
 	}
-	return (0);
+	else
+		data->error = "Wrong carac in map";
+	return (data->error);
 }
 
 char		*get_map_heart(t_data *data, char *line)
@@ -108,26 +91,4 @@ char		*get_specs_map(t_data *data, char *line)
 		}
 	}
 	return (0);
-}
-
-char		*get_map(t_data *data, char *line)
-{
-	int		ret;
-
-	ret = -1;
-	get_specs_map(data, line);
-	if (!(data->map = ft_calloc(data->mapcarac.maxheight + 1, sizeof(char *))))
-		return ("A malloc derped\n");
-	while (ret != 0)
-	{
-		data->config.y = 0;
-		if (data->config.l != 0)
-			ret = get_next_line(data->fd, &line);
-		if (!(data->str = ft_calloc(data->mapcarac.maxwidth + 1, sizeof(char))))
-			return ("A malloc derped\n");
-		data->map[data->config.l] = data->str;
-		data->error = get_map_3(data, line);
-		data->config.l++;
-	}
-	return (get_map_2(data));
 }

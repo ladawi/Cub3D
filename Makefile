@@ -6,7 +6,7 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/09/09 12:36:08 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/09 15:23:25 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,15 @@ SRCS = $(addprefix $(SRC_DIR)/, $(SRC_LIST))
 
 LIBFT_O = $(LIBFT_SRC:%.c= %.o)
 
+MINILIBX = ./minilibx-linux/libmlx.a
+
 LIBFT = ./libft/libft.a
 
 LIBFT_INCLUDE = ./libft/includes/libft.h\
 	./libft/includes/get_next_line.h
+
+MINILIBX_INCLUDE = ./minilibx-linux/mlx_int.h\
+	./minilibx-linux/mlx.h
 
 INCLUDE = includes/cub3d.h
 
@@ -63,17 +68,12 @@ BLU = \033[0;34m
 BOLD = \033[1m
 
 
-
-# return (check_wall() && check_wall() && chec_wall())
-# return (1)
-# return (0) si bout de chaine
-
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
+$(NAME): $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT) $(MINILIBX)
 	@echo "$(YEL)Made $(NAME)$(END)"
 	@echo "$(PUR)Compiling$(END)"
-	@gcc -fsanitize=address -o $(NAME) $(SRCO) $(LIBFT) -I ../MinilibX/includes/mlx.h -g MinilibX/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
+	@gcc -fsanitize=address -o $(NAME) $(SRCO) $(LIBFT) -I ../minilibx-linux/mlx.h -g minilibx-linux/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
 
 valgrind : $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
 	@echo "$(YEL)Made $(NAME)$(END)"
@@ -83,6 +83,9 @@ valgrind : $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT)
 
 $(LIBFT) : $(LIBFT_INCLUDE)
 	@make -C ./libft/
+
+$(MINILIBX) :
+	@make -C ./minilibx-linux
 
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
@@ -101,6 +104,7 @@ re: fclean all
 
 fclean: clean
 	@make fclean -C libft
+	@make clean -C minilibx-linux
 	@echo "$(RED)$(BOLD)Made [fclean] in libft$(END)"
 	@rm -rf $(NAME)
 	@echo "$(RED)$(BOLD)Removed $(NAME) $(END)"
