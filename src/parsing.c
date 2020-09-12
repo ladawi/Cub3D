@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 19:10:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 15:54:38 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 13:46:38 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ char			*parsing(t_data *data, char *line)
 		data->error = get_color(data, line);
 	else if (ft_strnstr(data->idparsing, "C", 0) != 0)
 		data->error = get_color(data, line);
-	else if (ft_strncmp(line, "\n", ft_strlen(line)) != 0)
+	else if (ft_findchar(data->idparsing[0], " 012NSEW") != 0)
 		data->error = get_map(data, line);
-	else
+	else if ((int)(ft_strlen(data->idparsing) > 1))
 	{
 		free(line);
-		line = 0;
+		return ("wrong parsing file");
 	}
 	(line) ? free(line) : 0;
 	return (data->error);

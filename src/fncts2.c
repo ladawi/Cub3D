@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:29 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 16:15:10 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 14:35:16 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ char		*check_map_2(t_data *data)
 			if (ft_findchar(data->map[y][x], "02") != 0)
 			{
 				if (y > 0 && ft_findchar(data->map[y - 1][x], "012NSEW") == 0)
-					return ("Invalid mapcarac");
+					return ("Invalid map");
 				if (y < data->mapcarac.maxheight
 					&& ft_findchar(data->map[y + 1][x], "012NSEW") == 0)
-					return ("Invalid mapcarac");
+					return ("Invalid map");
 				if (x > 0 && ft_findchar(data->map[y][x - 1], "012NSEW") == 0)
-					return ("Invalid mapcarac");
+					return ("Invalid map");
 				if (x < data->mapcarac.maxwidth
 					&& ft_findchar(data->map[y][x + 1], "012NSEW") == 0)
-					return ("Invalid mapcarac");
+					return ("Invalid map");
 			}
 		}
 	}
@@ -111,9 +111,11 @@ char		*get_map(t_data *data, char *line)
 			ret = get_next_line(data->fd, &line);
 		if (!(data->str = ft_calloc(data->mapcarac.maxwidth + 1, sizeof(char))))
 			return ("A malloc derped\n");
-		data->map[data->config.l] = data->str;
 		data->error = get_map_3(data, line);
+		data->map[data->config.l] = data->str;
 		data->config.l++;
+		if (data->error != 0)
+			return (data->error);
 	}
 	return (get_map_2(data));
 }

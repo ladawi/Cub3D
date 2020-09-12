@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:49:24 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 16:11:54 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 14:32:25 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		print_err_and_exit(t_data *data)
 {
 	if (data->error != 0)
 	{
-		ft_putendl_fd("error :", 0);
+		ft_putendl_fd("Error :", 0);
 		ft_putendl_fd(data->error, 0);
 		exit(1);
 	}
@@ -46,7 +46,7 @@ void		run_game(t_data *data)
 	mlx_hook(data->mlx_win, X_EVENT_KEY_PRESS, KeyPressMask, &keypress, data);
 	mlx_hook(data->mlx_win, X_EVENT_KEY_RELEASE, KeyReleaseMask,
 		&keyrelease, data);
-	mlx_hook(data->mlx_win, X_EVENT_EXIT, KeyPressMask, &exitwindow, data);
+	mlx_hook(data->mlx_win, X_EVENT_EXIT, 1L << 17, &exitwindow, data);
 	mlx_loop_hook(data->mlx_ptr, &gameloop, data);
 	mlx_loop(data->mlx_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 18:01:45 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 16:10:37 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 14:36:29 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			setid(t_data *data, char *str)
 	int		i;
 
 	i = 0;
-	while (str[i] != ' ' && str[i])
+	while (str[i])
 		i++;
 	data->idparsing = ft_substr(str, 0, i);
 	return (1);
@@ -26,18 +26,22 @@ int			setid(t_data *data, char *str)
 char		*initgame(t_data *data)
 {
 	char	*lineconfig;
+	int		ret;
 
-	while (get_next_line(data->fd, &lineconfig) > 0 && data->error == NULL)
+	while ((ret = get_next_line(data->fd, &lineconfig) > 0)
+		&& data->error == NULL)
 	{
 		get_next_line(data->fd2, &data->line2);
 		setid(data, lineconfig);
-		parsing(data, lineconfig);
+		data->error = parsing(data, lineconfig);
 		if (data->line2)
 		{
 			free(data->line2);
 			data->line2 = 0;
 		}
 		free(data->idparsing);
+		if (data->error != 0)
+			return (data->error);
 	}
 	free(lineconfig);
 	if ((data->config.y == 0 && data->config.l == 0) && data->error == 0)

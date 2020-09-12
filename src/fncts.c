@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:28:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 15:57:53 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 14:32:14 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ char		*get_map_heart_2(t_data *data, char *line, int i)
 				get_map_heart_3(data, line, i);
 			}
 			else
-				return ("error to many spawn");
+				return ("to many spawn");
 		}
 		if (ft_findchar(line[i], "2") != 0)
 			data->sprites.numsprites++;
 		data->str[data->config.y] = line[i];
 	}
 	else
-		data->error = "Wrong carac in map";
+		data->error = "wrong carac in map";
 	return (data->error);
 }
 
@@ -56,12 +56,14 @@ char		*get_map_heart(t_data *data, char *line)
 	i = 0;
 	if (data->config.y >= data->mapcarac.maxwidth
 		|| data->config.l >= data->mapcarac.maxheight)
-		return ("error mapcarac");
+		return ("Invalid map");
 	while (line[i] != 0 && line != 0)
 	{
 		data->error = get_map_heart_2(data, line, i);
 		data->config.y++;
 		i++;
+		if (data->error != 0)
+			return (data->error);
 	}
 	data->str[data->config.y] = 0;
 	return (data->error);

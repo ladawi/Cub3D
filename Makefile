@@ -6,7 +6,7 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/09/09 16:17:42 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/12 14:41:03 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,13 +73,13 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(SRCO) $(INCLUDE) $(LIBFT) $(MINILIBX)
 	@echo "$(YEL)Made $(NAME)$(END)"
 	@echo "$(PUR)Compiling$(END)"
-	@gcc $(FLAGS) -o $(NAME) $(SRCO) $(LIBFT) -I ../minilibx-linux/mlx.h -g minilibx-linux/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lmlx -lm -lbsd -I libft/includes
+	@gcc -fsanitize=address $(FLAGS) -o $(NAME) $(SRCO) $(LIBFT) -I ../minilibx-linux/mlx.h -g minilibx-linux/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lm -I libft/includes
 
 $(LIBFT) : $(LIBFT_INCLUDE)
 	@make -C ./libft/
 
 $(MINILIBX) :
-	@make -s -C ./minilibx-linux
+	@make --silent -C ./minilibx-linux
 
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
@@ -90,8 +90,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@make clean -C libft
-	@make clean -C minilibx-linux
-	@echo "$(RED)$(BOLD)Made [clean] in libft & minilibx$(END)"
+	@echo "$(RED)$(BOLD)Made [clean] in libft$(END)"
 	@rm -rf $(OBJ_DIR)
 	@echo "$(RED)$(BOLD)Removed *.o $(END)"
 
@@ -99,11 +98,12 @@ re: fclean all
 
 fclean: clean
 	@make fclean -C libft
-	@echo "$(RED)$(BOLD)Made [fclean] in libft$(END)"
+	@make clean -s -C minilibx-linux
+	@echo "$(RED)$(BOLD)Made [fclean] in libft  & minilibx$(END)"
 	@rm -rf $(NAME)
 	@echo "$(RED)$(BOLD)Removed $(NAME) $(END)"
 	@rm -rf Cub3D
 	@rm -rf ./screenshot/Cub3d\ screen.bmp
 	@echo "$(RED)$(BOLD)Removed Cub3D $(END)"
 
-.PHONY : all clean fclean all re
+.PHONY : all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 15:58:43 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 14:33:54 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void		spritecalc2(t_data *data)
 		+ data->sdata.spritescreenx;
 	(data->sdata.drawendx > data->res_width)
 		? data->sdata.drawendx = data->res_width : 0;
-	data->sdata.stripe = data->sdata.drawstartx - 1;
+	data->sdata.stripe = data->sdata.drawstartx;
 	(data->sdata.drawendx == data->res_width) ? data->sdata.fix = 1 : 0;
 }
 
 void		drawsprites2(t_data *data, unsigned int color, double *zbuffer)
 {
-	while (++data->sdata.stripe < data->sdata.drawendx)
+	while (++data->sdata.stripe <= data->sdata.drawendx)
 	{
 		data->sdata.texx = (int)(256 * (data->sdata.stripe -
 			(-data->sdata.spritewidth / 2 + data->sdata.spritescreenx))
@@ -66,7 +66,7 @@ void		drawsprites2(t_data *data, unsigned int color, double *zbuffer)
 			data->sdata.stripe < data->res_width && data->sdata.transformy <
 				zbuffer[data->res_width - data->sdata.stripe])
 		{
-			while (++data->var.h < data->sdata.drawendy)
+			while (++data->var.h <= data->sdata.drawendy)
 			{
 				data->var.d = (data->var.h - data->sdata.vmovescreen) * 256 -
 					data->res_height * 128 + data->sdata.spriteheight * 128;
