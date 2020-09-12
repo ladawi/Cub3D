@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 11:24:15 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/11 15:34:49 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 16:37:19 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		keypress(int keycode, t_data *data)
 		data->game.fstrafeleft = 5.0f;
 	if (keycode == KEY_D)
 		data->game.fstraferight = 5.0f;
-	if (keycode == KEY_W || keycode == KEY_FORWARD)
+	if (keycode == KEY_W)
 		data->game.fvforward = 5.0f;
-	if (keycode == KEY_S || keycode == KEY_BACKWARD)
+	if (keycode == KEY_S)
 		data->game.fvbackward = 5.0f;
 	if (keycode == KEY_LEFT || keycode == KEY_Q)
 		data->game.frotaleft = -M_PI;
@@ -61,9 +61,9 @@ int		keyrelease(int keycode, t_data *data)
 		data->game.frotaleft = 0;
 	if (keycode == KEY_RIGHT || keycode == KEY_E)
 		data->game.frotaright = 0;
-	if (keycode == KEY_W || keycode == KEY_FORWARD)
+	if (keycode == KEY_W)
 		data->game.fvforward = 0;
-	if (keycode == KEY_S || keycode == KEY_BACKWARD)
+	if (keycode == KEY_S)
 		data->game.fvbackward = 0;
 	return (0);
 }

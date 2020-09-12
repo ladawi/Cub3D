@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:20:49 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 16:57:49 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,14 @@ char			*get_resolution(t_data *data, char *line)
 	int			i;
 
 	i = 0;
+	if (data->parsing.r == 1)
+		return ("Invalid Parsing");
 	while (ft_findchar(line[i], "R 0") != 0)
 		line++;
 	if ((data->error = all_c_ok(data, line)) != 0)
 		return (data->error);
 	i = 0;
 	set_res(data, line, 0);
-	i = 0;
 	while (ft_isdigit(*line++) == 1 && *line)
 		i++;
 	while (ft_isdigit(*line) == 0 && *line != 0)
@@ -94,5 +95,6 @@ char			*get_resolution(t_data *data, char *line)
 		line++;
 	while (*line == ' ')
 		line++;
+	data->parsing.r += 1;
 	return (get_resolutiom_check(data, line));
 }

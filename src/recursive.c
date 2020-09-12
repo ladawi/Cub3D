@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/09 11:49:17 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 13:12:43 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 15:42:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ char		*check_spawn(t_data *data)
 	int i;
 
 	i = 0;
+	if (data->player.x == 0 || data->player.x == data->mapcarac.maxwidth)
+		return ("Spawn not valid");
+	if (data->player.y == 0 || data->player.y == data->mapcarac.maxheight)
+		return ("Spawn not valid");
 	i += check_west(data, data->player.x - 1, data->player.y);
 	i += check_north(data, data->player.x, data->player.y - 1);
 	i += check_est(data, data->player.x + 1, data->player.y);

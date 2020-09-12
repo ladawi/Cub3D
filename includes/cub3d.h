@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 16:10:41 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 16:54:07 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,18 @@ typedef struct	s_color
 	unsigned int	tab[3];
 }				t_color;
 
+typedef struct	s_parsing
+{
+	int		r;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		s;
+	int		f;
+	int		c;
+}				t_parsing;
+
 typedef struct	s_data
 {
 	void		*mlx_ptr;
@@ -268,10 +280,12 @@ typedef struct	s_data
 	t_ray		ray;
 	t_color		color;
 	t_pos		player;
+	t_parsing	parsing;
 }				t_data;
 
 char			*initgame(t_data *data);
 char			*initdata(t_data *data, char *pathconfig);
+char			*check_parsing(t_data *data);
 char			*parsing(t_data *data, char *line);
 char			*get_resolution(t_data *data, char *line);
 char			*get_texture_wall(t_data *data, char *line, int nb);

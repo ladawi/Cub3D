@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 15:55:19 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 16:48:46 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ void		initdata_game(t_data *data)
 	data->game.ddiry = 0;
 	data->game.dplanex = 0;
 	data->game.dplaney = 0.66;
+}
+
+char		*initparsingcheck(t_data *data)
+{
+	data->parsing.no = 0;
+	data->parsing.so = 0;
+	data->parsing.we = 0;
+	data->parsing.ea = 0;
+	data->parsing.r = 0;
+	data->parsing.s = 0;
+	data->parsing.f = 0;
+	data->parsing.c = 0;
+	return (0);
 }
 
 char		*initdata(t_data *data, char *pathconfig)
@@ -52,5 +65,6 @@ char		*initdata(t_data *data, char *pathconfig)
 		return ("Wrong .cub file");
 	data->sprites.numsprites = 0;
 	initdata_game(data);
+	initparsingcheck(data);
 	return (0);
 }

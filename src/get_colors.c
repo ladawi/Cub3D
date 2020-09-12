@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:51:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 16:08:44 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 16:43:46 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ char		*get_color3(t_data *data)
 	data->color.tab[0] = data->color.tab[0] << 16;
 	data->color.tab[1] = data->color.tab[1] << 8;
 	if (ft_strnstr(data->idparsing, "F", 0) != 0)
+	{
 		data->f_color = data->color.tab[0] + data->color.tab[1]
 			+ data->color.tab[2];
+		data->parsing.f += 1;
+	}
 	else if (ft_strnstr(data->idparsing, "C", 0) != 0)
+	{
 		data->c_color = data->color.tab[0] + data->color.tab[1]
 			+ data->color.tab[2];
+		data->parsing.c += 1;
+	}
 	return (0);
 }
 
