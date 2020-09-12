@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:54:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 17:56:02 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 20:31:04 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void		wallcasting(t_data *data, int x, double *zbuffer)
 		gameloop2(data, x);
 		gameloop3(data);
 		data->ray.lineheight = (int)(data->res_height / data->ray.perpwalldist);
-		data->ray.drawstart = -data->ray.lineheight / 2 + data->res_height / 2;
-		data->ray.drawend = data->ray.lineheight / 2 + data->res_height / 2;
+		data->ray.drawstart = -data->ray.lineheight / 2 + data->issou;
+		data->ray.drawend = data->ray.lineheight / 2 + data->issou;
 		data->ray.wallx = 0;
 		if (data->ray.side == 0)
 			data->ray.wallx = data->game.fplayery + data->ray.perpwalldist
@@ -59,6 +59,10 @@ void		player_move(t_data *data)
 		ft_rotate_player(data, data->game.frotaleft * data->ray.time_elapsed);
 	if (data->game.frotaright != 0)
 		ft_rotate_player(data, data->game.frotaright * data->ray.time_elapsed);
+	if ((data->issou - data->issou_down) > 0)
+		data->issou -= data->issou_down;
+	if ((data->issou + data->issou_up) < data->res_height)
+		data->issou += data->issou_up;
 }
 
 int			gameloop(t_data *data)

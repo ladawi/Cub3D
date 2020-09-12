@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 16:57:56 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 19:57:17 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void		spritecalc2(t_data *data)
 	data->sdata.spriteheight =
 		abs((int)(data->res_height / data->sdata.transformy)) / VDIV;
 	data->sdata.drawstarty = -data->sdata.spriteheight / 2
-		+ data->res_height / 2 + data->sdata.vmovescreen;
+		+ data->issou + data->sdata.vmovescreen;
 	(data->sdata.drawstarty < 0) ? data->sdata.drawstarty = 0 : 0;
 	data->sdata.drawendy = data->sdata.spriteheight / 2
-		+ data->res_height / 2 + data->sdata.vmovescreen;
+		+ data->issou + data->sdata.vmovescreen;
 	(data->sdata.drawendy >= data->res_height) ?
 		data->sdata.drawendy = data->res_height : 0;
 	data->sdata.spritewidth =
@@ -69,7 +69,7 @@ void		drawsprites2(t_data *data, unsigned int color, double *zbuffer)
 			while (++data->var.h <= data->sdata.drawendy)
 			{
 				data->var.d = (data->var.h - data->sdata.vmovescreen) * 256 -
-					data->res_height * 128 + data->sdata.spriteheight * 128;
+					data->issou * 2 * 128 + data->sdata.spriteheight * 128;
 				data->sdata.texy = ((data->var.d * data->tex.s_y) /
 					data->sdata.spriteheight) / 256;
 				color = data->tex.sprite.str[data->tex.s_x

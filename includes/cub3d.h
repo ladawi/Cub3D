@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 17:59:45 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 20:29:05 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@
 # define KEY_J					38
 # define KEY_LEFT				65361
 # define KEY_RIGHT				65363
-# define KEY_FORWARD 			65362
-# define KEY_BACKWARD			65364
+# define KEY_UP 				65362
+# define KEY_DOWN				65364
 # define KEY_ESC				65307
 
 # define NBTEXTURES				6
@@ -65,6 +65,7 @@
 # define NORTH					1
 # define EAST					2
 # define WEST					3
+# define TOP					4
 
 typedef struct	s_game
 {
@@ -249,8 +250,16 @@ typedef struct	s_parsing
 	int		c;
 }				t_parsing;
 
+typedef struct	s_fcast
+{
+	int		p;
+}				t_fcast;
+
 typedef struct	s_data
 {
+	int			issou;
+	int			issou_up;
+	int			issou_down;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	int			fd;
@@ -281,6 +290,7 @@ typedef struct	s_data
 	t_color		color;
 	t_pos		player;
 	t_parsing	parsing;
+	t_fcast		floor;
 }				t_data;
 
 char			*initgame(t_data *data);

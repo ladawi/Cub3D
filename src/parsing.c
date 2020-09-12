@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 19:10:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 16:16:58 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 20:04:17 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char			*parsing(t_data *data, char *line)
 		data->error = get_texture_wall(data, line, WEST);
 	else if (ft_strnstr(data->idparsing, "EA", 0) != 0)
 		data->error = get_texture_wall(data, line, EAST);
+	else if (ft_strnstr(data->idparsing, "TO", 0) != 0)
+		data->error = get_texture_wall(data, line, 4);
 	else if (ft_strnstr(data->idparsing, "S", 0) != 0)
 		data->error = get_sprite_texture(data, line);
 	else if (ft_strnstr(data->idparsing, "F", 0) != 0)

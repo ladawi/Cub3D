@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 16:48:46 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 19:32:15 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void		initdata_game(t_data *data)
 	data->game.ddiry = 0;
 	data->game.dplanex = 0;
 	data->game.dplaney = 0.66;
+	data->issou = 0;
+	data->issou_down = 0;
+	data->issou_up = 0;
 }
 
 char		*initparsingcheck(t_data *data)

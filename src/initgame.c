@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 18:01:45 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 16:54:07 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 19:58:23 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char		*initgame(t_data *data)
 		if (data->error != 0)
 			return (data->error);
 	}
+	data->issou = data->res_height / 2;
 	free(lineconfig);
 	if ((data->config.y == 0 && data->config.l == 0) && data->error == 0)
 		data->error = "No map";
