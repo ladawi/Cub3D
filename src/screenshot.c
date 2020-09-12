@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 09:51:54 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/09 16:06:29 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/12 18:18:12 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char		*ft_screenshot(t_data *data)
 	char	*file;
 	char	header[54];
 
-	fdscreen = open("./screenshot/Cub3d screen.bmp", O_CREAT | O_WRONLY, 0666);
+	fdscreen = open("./screenshot/Cub3d_screen.bmp", O_CREAT | O_WRONLY, 0666);
 	create_header(data, &header[0]);
 	file = (char*)fill_file(data);
 	write(fdscreen, header, 54);

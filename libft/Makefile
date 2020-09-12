@@ -6,7 +6,7 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/08/31 10:58:06 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/12 18:05:12 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,15 +85,14 @@ all: $(NAME)
 
 $(NAME): $(SRCO) $(INCLUDE) $(OBJ_DIR)
 	@ar -rcs $(NAME) $(SRCO)
-	@mv src/*.o obj/.
 	@echo "$(YEL)Made $(NAME)$(END)"
 
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
 
-%.o: %.c
-	@gcc $(FLAGS) -c $< -o $@
-	@echo "$(GRE)$<$(END)"
+$(OBJ_DIR)/%.o: %.c
+	@gcc $(FLAGS) -g -c $< -o $@
+	@echo "$(GRE)$@$(END)"
 
 clean:
 	@rm -rf $(OBJ_DIR)
