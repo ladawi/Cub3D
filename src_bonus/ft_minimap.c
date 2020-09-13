@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 13:52:22 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/08 17:20:23 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/13 17:56:36 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_draw_pixel_map(t_data *data, int x, int y, char c)
 {
 	if (c == '1')
 		data->simg.str[x + (data->simg.size_line * y)] = 1264551;
-	else if (c == '0')
+	else if (c == '0' || c == '.')
 		data->simg.str[x + (data->simg.size_line * y)] = 16777215;
 	else if (ft_findchar(c, "PNSEW") != 0)
 		data->simg.str[x + (data->simg.size_line * y)] = 16711680;

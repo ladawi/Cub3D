@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:47:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 19:32:15 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/13 18:21:30 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		initdata_game(t_data *data)
 	data->issou = 0;
 	data->issou_down = 0;
 	data->issou_up = 0;
+
 }
 
 char		*initparsingcheck(t_data *data)
@@ -47,6 +48,7 @@ char		*initparsingcheck(t_data *data)
 
 char		*initdata(t_data *data, char *pathconfig)
 {
+	data->jump = 0;
 	data->error = 0;
 	data->res_width = -1;
 	data->res_height = -1;
@@ -56,6 +58,8 @@ char		*initdata(t_data *data, char *pathconfig)
 	data->mlx_win = 0;
 	mlx_get_screen_size(data->mlx_ptr,
 		&data->max_res_width, &data->max_res_height);
+	if (!(data->ray.sf_dist = ft_calloc(data->max_res_height, sizeof(double))))
+		return ("Err malloc");
 	data->fd = open(pathconfig, O_RDONLY);
 	data->fd2 = open(pathconfig, O_RDONLY);
 	data->config.l = 0;

@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 20:29:05 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/13 18:21:22 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define KEY_UP 				65362
 # define KEY_DOWN				65364
 # define KEY_ESC				65307
+# define KEY_SPACE				32
 
 # define NBTEXTURES				6
 # define M_2PI					6.28318530718
@@ -197,6 +198,7 @@ typedef	struct	s_var
 
 typedef struct	s_ray
 {
+	double	*sf_dist;
 	int		hit;
 	int		mapx;
 	int		mapy;
@@ -257,6 +259,7 @@ typedef struct	s_fcast
 
 typedef struct	s_data
 {
+	int			jump;
 	int			issou;
 	int			issou_up;
 	int			issou_down;
@@ -300,6 +303,8 @@ char			*parsing(t_data *data, char *line);
 char			*get_resolution(t_data *data, char *line);
 char			*get_texture_wall(t_data *data, char *line, int nb);
 char			*get_sprite_texture(t_data *data, char *line);
+int				shade_color(int color, double divide);
+void			calc_sf_dist(double height, double *r);
 char			*get_color(t_data *data, char *line);
 char			*get_map_heart_2(t_data *data, char *line, int i);
 void			ft_rotate_player(t_data *data, double angle);
@@ -307,7 +312,7 @@ char			*get_map_2(t_data *data);
 char			*get_map_3(t_data *data, char *line);
 char			*drawsprites(t_data *data, double *zbuffer);
 char			*get_specs_map(t_data *data);
-char			*check_spawn(t_data *data);
+char			*check_close(t_data *data, int x, int y);
 char			*check_map2(t_data *data, int p, int u);
 char			*check_map3(t_data *data, int u, int i);
 char			*check_map(t_data *data);

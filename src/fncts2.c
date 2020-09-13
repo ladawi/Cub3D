@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:29 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 14:35:16 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/13 16:01:56 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ char		*check_map(t_data *data)
 		while (++u < data->mapcarac.maxwidth)
 		{
 			data->error = check_map2(data, p, u);
+			if (data->error != 0)
+				return (data->error);
 			data->error = check_map3(data, u, i);
 			i = 0;
 		}
 		u = -1;
 	}
-	if (data->error == 0)
-		data->error = check_spawn(data);
+	// if (data->error == 0)
+	// 	data->error = check_close(data, data->player.x, data->player.y);
 	return (data->error);
 }
 
@@ -47,18 +49,12 @@ char		*check_map_2(t_data *data)
 		x = -1;
 		while (++x < data->mapcarac.maxwidth)
 		{
-			if (ft_findchar(data->map[y][x], "02") != 0)
+			if (ft_findchar(data->map[y][x], "0") != 0)
 			{
-				if (y > 0 && ft_findchar(data->map[y - 1][x], "012NSEW") == 0)
-					return ("Invalid map");
-				if (y < data->mapcarac.maxheight
-					&& ft_findchar(data->map[y + 1][x], "012NSEW") == 0)
-					return ("Invalid map");
-				if (x > 0 && ft_findchar(data->map[y][x - 1], "012NSEW") == 0)
-					return ("Invalid map");
-				if (x < data->mapcarac.maxwidth
-					&& ft_findchar(data->map[y][x + 1], "012NSEW") == 0)
-					return ("Invalid map");
+				data->map[y][x] = '.';
+				data->error = check_close(data,x, y);
+				if (data->error != 0)
+					return (data->error);
 			}
 		}
 	}

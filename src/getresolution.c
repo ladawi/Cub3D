@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:20:49 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 19:57:43 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/13 18:17:57 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char			*get_resolution(t_data *data, char *line)
 	int			i;
 
 	i = 0;
-	if (data->parsing.r == 1)
+	if (data->parsing.r > 1)
 		return ("Invalid Parsing");
 	while (ft_findchar(line[i], "R 0") != 0)
 		line++;
