@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:51:25 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/12 16:43:46 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/15 13:45:58 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char		*get_color2(t_data *data, char *line)
 	int i;
 
 	i = 0;
-	while (*line != ',' && *line != 0)
+	while (*line != ',' && *line != 0 && *line != '0')
 	{
 		line++;
 		i++;
@@ -52,7 +52,7 @@ char		*get_color2(t_data *data, char *line)
 	line++;
 	data->color.tab[2] = atoi(line);
 	i = 0;
-	while (*line != ' ' && *line != 0)
+	while (*line != ' ' && *line != 0 && *line != '0')
 	{
 		line++;
 		i++;
@@ -75,7 +75,7 @@ char		*get_color(t_data *data, char *line)
 		line++;
 	data->color.tab[0] = atoi(line);
 	i = 0;
-	while (*line != ',' && *line != 0)
+	while (*line != ',' && *line != 0 && *line != '0')
 	{
 		line++;
 		i++;

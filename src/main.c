@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:49:24 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/13 18:28:45 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/15 14:13:34 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int			check_arg(char *str)
 {
-	if (ft_strncmp(str, "--save", 6) != 0)
+	size_t	len;
+
+	len = (ft_strlen(str) < 6) ? 6 : ft_strlen(str);
+	if (ft_strncmp(str, "--save", len) != 0)
 		return (-1);
 	else
 		return (0);

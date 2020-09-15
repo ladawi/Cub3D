@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:30:07 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/13 18:48:24 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/15 14:00:30 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,7 @@ void		draw_column(t_data *data, int x)
 	while (++y < data->res_height)
 	{
 		if (y <= data->ray.drawstart)
-		{
-			data->simg.str[x + (data->simg.size_line * y)] = shade_color(data->c_color, 1 - data->ray.sf_dist[y] / 1.5);
-			// data->simg.str[x + (data->simg.size_line * y)] = data->c_color;
-		}
+			data->simg.str[x + (data->simg.size_line * y)] = data->c_color;
 		else if (y > data->ray.drawstart && y < data->ray.drawend)
 		{
 			if (data->ray.hit == 1 && data->ray.raydirx > 0 && !data->ray.side)
@@ -139,9 +136,6 @@ void		draw_column(t_data *data, int x)
 				ft_putpixel(data, NORTH, x, y);
 		}
 		else if (y >= data->ray.drawend)
-		{
-			data->simg.str[x + (data->simg.size_line * y)] = shade_color(data->f_color, data->ray.sf_dist[y] / 1.5);
-			// data->simg.str[x + (data->simg.size_line * y)] = data->f_color;
-		}
+			data->simg.str[x + (data->simg.size_line * y)] = data->f_color;
 	}
 }

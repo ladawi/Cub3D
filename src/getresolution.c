@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 11:20:49 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/13 18:17:57 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/14 14:13:43 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 char			*get_resolutiom_check(t_data *data, char *line)
 {
 	if (data->res_height <= 0 || data->res_width <= 0)
-	{
-		printf("muk\n");
 		data->error = "wrong res";
-	}
 	if (data->res_width > data->max_res_width)
 		data->res_width = data->max_res_width;
 	if (data->res_height > data->max_res_height)

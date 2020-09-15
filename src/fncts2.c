@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:29 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/13 16:01:56 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/15 14:00:49 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ char		*check_map(t_data *data)
 		}
 		u = -1;
 	}
-	// if (data->error == 0)
-	// 	data->error = check_close(data, data->player.x, data->player.y);
 	return (data->error);
 }
 
@@ -52,7 +50,7 @@ char		*check_map_2(t_data *data)
 			if (ft_findchar(data->map[y][x], "0") != 0)
 			{
 				data->map[y][x] = '.';
-				data->error = check_close(data,x, y);
+				data->error = check_close(data, x, y);
 				if (data->error != 0)
 					return (data->error);
 			}

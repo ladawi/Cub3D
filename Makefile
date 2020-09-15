@@ -6,7 +6,7 @@
 #    By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 09:29:31 by ladawi            #+#    #+#              #
-#    Updated: 2020/09/12 18:17:56 by ladawi           ###   ########.fr        #
+#    Updated: 2020/09/15 14:16:01 by ladawi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(OBJ_BONUS_DIR) $(SRCO) $(SRCO_BONUS) $(INCLUDE) $(LIBFT) $(MINILIBX)
 	@echo "$(YEL)Made $(NAME)$(END)"
 	@echo "$(PUR)Compiling$(END)"
-	@gcc -fsanitize=address $(FLAGS) -o $(NAME) $(SRCO) $(SRCO_BONUS) $(LIBFT) -I ../minilibx-linux/mlx.h -g minilibx-linux/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lm -I libft/includes
+	@gcc $(FLAGS) -o $(NAME) $(SRCO) $(SRCO_BONUS) $(LIBFT) -I ../minilibx-linux/mlx.h -g minilibx-linux/libmlx_Linux.a -L ./minilibx -lX11 -lXext -lm -I libft/includes
 
 bonus : $(NAME)
 

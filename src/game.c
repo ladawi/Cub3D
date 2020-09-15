@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:54:01 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/13 18:48:29 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/15 14:09:18 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void		ft_putpixel(t_data *data, int side, int x, int y)
 		* data->tex.tex[side].height / data->ray.lineheight;
 	data->ray.color = data->tex.tex[side].str[data->tex.tex[side].height
 		* data->ray.texy + data->ray.texx];
-	data->simg.str[x + (data->simg.size_line * y)] = shade_color(data->ray.color, data->ray.perpwalldist / 1.5);
-	// data->simg.str[x + (data->simg.size_line * y)] = data->ray.color;
+	data->simg.str[x + (data->simg.size_line * y)] = data->ray.color;
 }
 
 void		wallcasting(t_data *data, int x, double *zbuffer)
@@ -48,17 +47,6 @@ void		wallcasting(t_data *data, int x, double *zbuffer)
 
 void		player_move(t_data *data)
 {
-	if (data->jump != 0)
-	{
-		if (data->game.fstraferight == 5.0f)
-			data->game.fstraferight *= 0.5f;
-		if (data->game.fstrafeleft == 5.0f)
-			data->game.fstrafeleft *= 0.5f;
-		if (data->game.fvforward == 5.0f)
-			data->game.fvforward *= 0.5f;
-		if (data->game.fvbackward == 5.0f)
-			data->game.fvbackward *= 0.5f;
-	}
 	if (data->game.fvforward != 0)
 		move_player_front(data, data->ray.time_elapsed);
 	if (data->game.fvbackward != 0)
@@ -72,15 +60,9 @@ void		player_move(t_data *data)
 	if (data->game.frotaright != 0)
 		ft_rotate_player(data, data->game.frotaright * data->ray.time_elapsed);
 	if ((data->issou - data->issou_down) > 0)
-	{
 		data->issou -= data->issou_down;
-		// calc_sf_dist(data->res_height , data->ray.sf_dist);
-	}
 	if ((data->issou + data->issou_up) < data->res_height)
-	{
 		data->issou += data->issou_up;
-		// calc_sf_dist(data->res_height + data->issou, data->ray.sf_dist);
-	}
 }
 
 int			gameloop(t_data *data)

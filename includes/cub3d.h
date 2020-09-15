@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:31:08 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/13 18:21:22 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/14 14:57:47 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define KEY_ESC				65307
 # define KEY_SPACE				32
 
-# define NBTEXTURES				6
+# define NBTEXTURES				7
 # define M_2PI					6.28318530718
 
 # define UDIV  					1
@@ -198,7 +198,6 @@ typedef	struct	s_var
 
 typedef struct	s_ray
 {
-	double	*sf_dist;
 	int		hit;
 	int		mapx;
 	int		mapy;
@@ -303,8 +302,6 @@ char			*parsing(t_data *data, char *line);
 char			*get_resolution(t_data *data, char *line);
 char			*get_texture_wall(t_data *data, char *line, int nb);
 char			*get_sprite_texture(t_data *data, char *line);
-int				shade_color(int color, double divide);
-void			calc_sf_dist(double height, double *r);
 char			*get_color(t_data *data, char *line);
 char			*get_map_heart_2(t_data *data, char *line, int i);
 void			ft_rotate_player(t_data *data, double angle);

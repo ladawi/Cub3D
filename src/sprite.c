@@ -6,7 +6,7 @@
 /*   By: ladawi <ladawi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:43:36 by ladawi            #+#    #+#             */
-/*   Updated: 2020/09/13 16:00:06 by ladawi           ###   ########.fr       */
+/*   Updated: 2020/09/15 13:59:38 by ladawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void		spritecalc(t_data *data)
 		* data->sdata.spritex + data->game.dplanex * data->sdata.spritey);
 	data->sdata.spritescreenx = (int)((data->res_width / 2)
 		* (1 + data->sdata.transformx / data->sdata.transformy));
-	data->sdata.vmovescreen = (int)(VMOVE / data->sdata.transformy) + data->jump / data->sdata.transformy;
+	data->sdata.vmovescreen = (int)(VMOVE / data->sdata.transformy)
+		+ data->jump / data->sdata.transformy;
 }
 
 void		spritecalc2(t_data *data)
